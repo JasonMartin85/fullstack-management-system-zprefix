@@ -50,6 +50,7 @@ app.post('/login', (req,res) => {
 
 app.post('/newitem', (req,res) => {
   const {item_name,description,quantity,userid} = req.body;
+  console.log(req.body)
 
   knex('items')
   .insert({
@@ -68,7 +69,6 @@ app.get('/user/:id', (req,res) => {
   knex('users')
   .where('id','=',req.params.id)
   .then(data => {
-    console.log(data)
     res.status(200).json(data[0].username)})
   .catch((err) => {
     res.status(404).send(err)

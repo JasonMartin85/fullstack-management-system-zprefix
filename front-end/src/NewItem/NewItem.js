@@ -11,23 +11,26 @@ const NewItem = () => {
   const newItemSubmit = (e) => {
     e.preventDefault();
     setNewItem({...inputs,userid:currentUser.id})
-    // navigate('/home')
   }
 
   useEffect(()=>{
+    if(Object.keys(newItem).length !== 0) {
+      console.log(newItem)
     const reqOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newItem)
     }
+    console.log("newItem",newItem)
     fetch(`http://localhost:3001/newitem`,reqOptions)
     .then(res => {
       if(!res.ok) throw new Error(res.statusText)
-      console.log(res.body)
+      if(res.status === 201){
+        navigate('/home')
+      } 
     })
     .catch(err => console.log(err))
-    console.log(newItem)
-
+    }
   },[newItem])
 
 
@@ -36,6 +39,7 @@ const NewItem = () => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs(values => ({...values,[name]:value}))
+    console.log(inputs)
   }
 
   return (<>

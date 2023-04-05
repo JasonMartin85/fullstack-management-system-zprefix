@@ -10,10 +10,14 @@ const Navbar = () => {
   }
 
   return(<>
-    {"username" in currentUser ? <div>User: {currentUser.username}</div>: <></>}
+    
+    
+    {"username" in currentUser ? <>
+    <div>User: {currentUser.username}</div>
     <Link to='/Home'>Inventory Management System</Link><br/>
     <Link to='/Login'><button onClick={logoutUser}>Logout</button></Link><br/>
     <Link to='/NewItem'><button>Create new item</button></Link>
+    </> : <><Link to='/Login'>Inventory Management System</Link><br/></>}
   </>)
 }
 
