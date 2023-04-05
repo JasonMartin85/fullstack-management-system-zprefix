@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /front-end
 
-COPY . /front-end/
+COPY . /front-end
 
 EXPOSE 3000
 

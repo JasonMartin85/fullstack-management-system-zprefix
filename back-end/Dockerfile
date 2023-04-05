@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /back-end
 
-COPY . /back-end/
+COPY . /back-end
 
 EXPOSE 3001
 

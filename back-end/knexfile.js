@@ -9,13 +9,13 @@ module.exports = {
     client: 'pg',
     connection: {
       user: process.env.POSTGRES_USER || 'postgres',
-      password: process.env.POSTGRES_USER || 'docker',
+      password: process.env.POSTGRES_USER_PW || 'docker',
       host: process.env.POSTGRES_HOST || '127.0.0.1',
       port: process.env.POSTGRES_PORT || 5432,
       database: process.env.POSTGRES_DB || 'postgres',
     }
   },
-
+  
   staging: {
     client: 'postgresql',
     connection: {
