@@ -3,14 +3,19 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Home from './Home/Home.js'
 import Item from './Item/Item.js'
 import Login from './Login/Login.js'
+import Navbar from './Navbar/Navbar.js'
 
 function App() {
   return (<>
     <div >
-      <h1>Inventory Management System</h1>
-      <Home />
-      <Item />
-      <Login />
+      
+      <Navbar/>
+      <Routes>
+        <Route path = "/" element = {<Login />} />
+        <Route path = "/Home" element = {<Home />} />  
+        <Route path = "/Item" element = {<Item />} />
+        <Route path = "/Login" element = {<Login />} />
+      </Routes>
     </div>
     </>);
 }
