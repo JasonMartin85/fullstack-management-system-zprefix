@@ -1,4 +1,5 @@
 import './App.css';
+import React, {useState} from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Home from './Home/Home.js'
 import Item from './Item/Item.js'
@@ -6,9 +7,12 @@ import Login from './Login/Login.js'
 import Navbar from './Navbar/Navbar.js'
 import NewItem from './NewItem/NewItem.js'
 
+export const itemContext = React.createContext();
+
 function App() {
+  const [currentUser, setCurrentUser] = useState({})
   return (<>
-    <div >
+    <itemContext.Provider value = {{currentUser,setCurrentUser}}>
       
       <Navbar/>
       <Routes>
@@ -18,7 +22,7 @@ function App() {
         <Route path = "/Login" element = {<Login />} />
         <Route path = "/NewItem" element = {<NewItem />} />
       </Routes>
-    </div>
+    </itemContext.Provider>
     </>);
 }
 
