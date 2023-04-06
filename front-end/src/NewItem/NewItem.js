@@ -84,17 +84,19 @@ const NewItem = (props) => {
   return (
 <section className="col-span-2 place-items-center h-screen w-full mt-10">
   <div className="px-9">
-    <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
-    <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">{header}</h5>
+    <h3 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-5xl">{header}</h3>
+    <div className="block w-1/4 rounded-lg bg-white shadow-lg dark:bg-neutral-700 p-10 ">
     <form onSubmit={handleSubmit}>
-      Item Name<input 
+      <div className="font-bold">Item Name</div>
+      <input 
         className="border border-2 rounded mb-2 ml-4" 
         name="item_name" 
         onChange={handleChange}
         defaultValue={defaultValues.item_name}
         /><br/>
 
-      Description<textarea
+      <div className="font-bold">Description</div>
+      <textarea
         rows="10"
         cols="50" 
         className="border border-2 rounded mb-2 ml-4" 
@@ -103,15 +105,18 @@ const NewItem = (props) => {
         defaultValue={defaultValues.description}
       /><br/>
 
-      Quantity<input
+      <div className="font-bold">Quantity</div>
+      <input
         className="border border-2 rounded mb-2 ml-8"
         name="quantity" 
         onChange={handleChange}
         defaultValue={defaultValues.quantity}
         /><br/>
 
-      <Button type="submit">Submit</Button>
-      <Button onClick={()=>cancelClick()}>Cancel</Button>
+      <div className="flex flex-row justify-center gap-4">
+        <Button type="submit">Submit</Button>
+        <Button onClick={()=>cancelClick()}>Cancel</Button>
+      </div>
     </form>
     </div>
   </div>

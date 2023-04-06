@@ -41,20 +41,27 @@ const Item = () => {
   },[updateToggle])
 
   return(<section className="col-span-2 place-items-center h-screen w-full mt-10">
-    <div className="px-9">
     {currentItem  && itemCreator ? <>
-    {!updateToggle 
-      ? <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">  
-        <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">Item {currentItem.id}</h5>
-          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Item Name: ${currentItem.item_name}`}</div>
-          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Description: ${currentItem.description}`}</div>
-          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Quantity: ${currentItem.quantity}`}</div>
-          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Created By: ${itemCreator}`}</div>
-
-          <Button onClick={updateItem}> Edit</Button>
-          <Button onClick={deleteItem}>Delete</Button>
+    {!updateToggle ? <>
+    <div className="px-9">
+      <h3 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-5xl">Detail Item View</h3>
+        <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 p-10 w-1/4">  
+        <h3 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 text-center text-4xl">{currentItem.item_name}</h3>
+          <div className="font-bold ml-3">Item ID: </div>
+          <div className="ml-4 mb-4 text-base text-neutral-600 dark:text-neutral-200">{`${currentItem.id}`}</div>
+          <div className="ml-3 font-bold">Description:</div> 
+          <div className="ml-4 mb-4 text-base text-neutral-600 dark:text-neutral-200">{`${currentItem.description}`}</div>
+          <div className="ml-3 font-bold">Quantity:</div> 
+          <div className="ml-4 mb-4 text-base text-neutral-600 dark:text-neutral-200">{`${currentItem.quantity}`}</div>
+          <div className="ml-3 font-bold">Created By:</div> 
+          <div className="ml-4 mb-4 text-base text-neutral-600 dark:text-neutral-200">{`${itemCreator}`}</div>
+          <div className="ml-4 flex flex-row justify-center gap-4">
+            <Button onClick={updateItem}> Edit</Button>
+            <Button className="bg-failure"onClick={deleteItem}>Delete</Button>
+          </div>
         </div> 
-        
+      </div>
+        </>
       :<> 
         <NewItem method="PATCH" defaultValues={currentItem} updateToggle={setUpdateToggle} />
       </>}
@@ -63,7 +70,6 @@ const Item = () => {
         color="success"
         aria-label="Success spinner example"
       />}
-  </div>
   </section>)
 }
 
