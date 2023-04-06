@@ -100,5 +100,9 @@ app.get('/countitems', (req,res) => {
   .catch(err => res.status(404).send(err))
 })
 
+app.all("/*", (req,res) => {
+  res.status(404).json(`The requested URL /${req.params['0']} was not found on this server`)
+})
+
 
 module.exports = app;
