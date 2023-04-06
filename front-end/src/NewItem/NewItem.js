@@ -94,7 +94,9 @@ const NewItem = (props) => {
         defaultValue={defaultValues.item_name}
         /><br/>
 
-      Description<input 
+      Description<textarea
+        rows="10"
+        cols="50" 
         className="border border-2 rounded mb-2 ml-4" 
         name="description" 
         onChange={handleChange}
