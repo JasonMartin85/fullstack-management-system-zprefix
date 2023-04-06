@@ -75,5 +75,15 @@ app.get('/user/:id', (req,res) => {
   })
 })
 
+app.delete('/item/:id', (req,res) => {
+  knex('items')
+  .where('id','=',req.params.id)
+  .del()
+  .then(data => res.status(200).json(data))
+  .catch((err) => {
+    res.status(404).send(err)
+  })
+})
+
 
 module.exports = app;

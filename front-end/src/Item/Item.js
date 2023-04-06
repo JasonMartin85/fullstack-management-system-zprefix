@@ -1,10 +1,23 @@
 import React, {useEffect,useState} from 'react'
-import {useParams}  from 'react-router-dom'
+import {useParams, useNavigate}  from 'react-router-dom'
 
 const Item = () => {
   const [currentItem,setCurrentItem] = useState();
   const [itemCreator,setItemCreator] = useState();
+  const navigate = useNavigate();
   let params = useParams();
+
+  const deleteItem = () => {
+    fetch(`http://localhost:3001/item/${params.id}`, {method: "DELETE"})
+    .then(res => {
+      if (res.status === 200) {
+        navigate('/home')
+      } else {
+        alert("Error trying to delete item, please try again later")
+      }
+    })
+
+  }
 
   useEffect(()=>{
     fetch(`http://localhost:3001/item/${params.id}`)
@@ -29,7 +42,7 @@ const Item = () => {
     <div>{`Description: ${currentItem.description}`}</div>
     <div>{`Created By: ${itemCreator}`}</div>
     <button>Edit</button>
-    <button>Delete</button>
+    <button onClick={deleteItem}>Delete</button>
     </> : 
     <span>Loading...</span>}
 
