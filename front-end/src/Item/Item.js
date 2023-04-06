@@ -51,7 +51,9 @@ const Item = () => {
   })
   },[updateToggle])
 
-  return(<section className="col-span-2 place-items-center h-screen w-full mt-10">
+  return(<>
+  {console.log(itemCount===parseInt(params.id))}
+  <section className="col-span-2 place-items-center h-screen w-full mt-10 flex flex-col">
     {currentItem  && itemCreator ? <>
     {!updateToggle ? <>
       <h3 className="mb-2 font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-3xl px-9">Detail Item View</h3>
@@ -67,8 +69,6 @@ const Item = () => {
           <div className="ml-3 font-bold">Created By:</div> 
           <div className="ml-4 mb-4 text-base dark:text-neutral-200">{`${itemCreator}`}</div>
           <div className="ml-4 flex flex-row justify-center gap-4">
-            <Button onClick={updateItem}> Edit</Button>
-            <Button className="bg-failure"onClick={deleteItem}>Delete</Button>
           </div>
         </div> 
         <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg bg-green-800 p-10">
@@ -80,21 +80,25 @@ const Item = () => {
           <div className="ml-3 font-bold mt-2">Description:</div> 
           <div className="ml-4 mb-4 text-base">{`${currentItem.description}`}</div>
         </div>
-
+      </div>
+      <div className="flex flex-row gap-10 mt-5">
       <Button disabled={parseInt(params.id) === 1} onClick={()=>{handlePageChange(parseInt(params.id) - 1)}}>Previous</Button>
-      <Button disabled={params.id === itemCount} onClick={()=>{handlePageChange(parseInt(params.id) + 1)}}>Next</Button>
-
+      <Button onClick={updateItem}> Edit</Button>
+      <Button className="bg-failure"onClick={deleteItem}>Delete</Button>
+      <Button disabled={parseInt(params.id) === itemCount} onClick={()=>{handlePageChange(parseInt(params.id) + 1)}}>Next</Button>
       </div>
         </>
       :<> 
         <NewItem method="PATCH" defaultValues={currentItem} updateToggle={setUpdateToggle} />
       </>}
-      </> : 
-        <Spinner
-        color="success"
-        aria-label="Success spinner example"
-      />}
-  </section>)
+      </> :<>
+      <h1>Unable to retrieve item:</h1>
+      <div className="flex flex-row gap-5 mt-2">
+      <Button disabled={parseInt(params.id) === 1} onClick={()=>{handlePageChange(parseInt(params.id) - 1)}}>Previous</Button>
+        <Spinner color="success" aria-label="Success spinner example"/>
+      <Button disabled={parseInt(params.id) === itemCount} onClick={()=>{handlePageChange(parseInt(params.id) + 1)}}>Next</Button>
+      </div></>}
+  </section></>)
 }
 
 export default Item;

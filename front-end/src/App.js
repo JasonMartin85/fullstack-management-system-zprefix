@@ -20,7 +20,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
-        setItemCount(data[0].count);
+        setItemCount(data[0].max);
       });
   }, []);
   return (<div className="h-screen bg-emerald-600">

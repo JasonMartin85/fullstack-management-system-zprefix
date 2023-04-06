@@ -95,7 +95,7 @@ app.patch('/item/:id', (req,res) => {
 })
 
 app.get('/countitems', (req,res) => {
-  knex('items').count("id")
+  knex('items').max("id")
   .then(data => res.status(200).json(data))
   .catch(err => res.status(404).send(err))
 })
