@@ -4,7 +4,7 @@ import {itemContext} from '../App.js'
 import {Button} from 'flowbite-react'
 
 const NewItem = (props) => {
-  let defaultValues = {item_name:"",description:"",quantity:""}
+  let defaultValues = {item_name:"",description:"",quantity:"",sci_name:"",img_string:""}
   let header;
   if (props.method === "POST") {
     header = 'Create New Item';
@@ -17,7 +17,9 @@ const NewItem = (props) => {
     {
       item_name: defaultValues.item_name,
       description: defaultValues.description,
-      quantity: defaultValues.quantity
+      quantity: defaultValues.quantity,
+      sci_name: defaultValues.sci_name,
+      img_string: defaultValues.img_string
     })
   let reqOptions = {
     method: props.method,
@@ -87,12 +89,20 @@ const NewItem = (props) => {
     <h3 className="mb-2 font-medium leading-tight text-neutral-800 text-3xl">{header}</h3>
     <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg p-10 ">
     <form onSubmit={handleSubmit}>
-      <div className="font-bold">Item Name</div>
+      <div className="font-bold">Common Name</div>
       <input 
         className="border border-2 rounded mb-2 ml-4" 
         name="item_name" 
         onChange={handleChange}
         defaultValue={defaultValues.item_name}
+        /><br/>
+
+      <div className="font-bold">Scientific Name</div>
+      <input 
+        className="border border-2 rounded mb-2 ml-4" 
+        name="sci_name" 
+        onChange={handleChange}
+        defaultValue={defaultValues.sci_name}
         /><br/>
 
       <div className="font-bold">Description</div>
@@ -107,13 +117,20 @@ const NewItem = (props) => {
 
       <div className="font-bold">Quantity</div>
       <input
-        className="border border-2 rounded mb-2 ml-8"
+        className="border border-2 rounded mb-2 ml-4"
         name="quantity" 
         onChange={handleChange}
         defaultValue={defaultValues.quantity}
         /><br/>
 
-      <div className="flex flex-row justify-center gap-4">
+      <div className="font-bold">Image Link</div>
+      <input 
+        className="border border-2 rounded mb-2 ml-4 w-full" 
+        name="img_string" 
+        onChange={handleChange}
+        defaultValue={defaultValues.img_string}
+        /><br/>
+      <div className="flex flex-row justify-center gap-4 p-5">
         <Button type="submit">Submit</Button>
         <Button onClick={()=>cancelClick()}>Cancel</Button>
       </div>
