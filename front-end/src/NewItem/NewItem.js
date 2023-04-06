@@ -1,28 +1,58 @@
 import React, {useState, useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import {itemContext} from '../App.js'
 
-const NewItem = () => {
-  const [inputs,setInputs] = useState({item_name:'',description:'',quantity:''})
+const NewItem = (props) => {
+  let defaultValues = {item_name:"",description:"",quantity:""}
+  let header;
+  if (props.method === "POST") {
+    header = 'Create New Item';
+  }
+  if (props.method === "PATCH") {
+    defaultValues = props.defaultValues;
+    header = 'Update Item';
+  }
+  const [inputs,setInputs] = useState(
+    {
+      item_name: defaultValues.item_name,
+      description: defaultValues.description,
+      quantity: defaultValues.quantity
+    })
+  let reqOptions = {
+    method: props.method,
+    headers: {"Content-Type": "application/json"},
+  }
+
   const [newItem, setNewItem] = useState({})
+  const [patchItem, setPatchItem] = useState({})
   const {currentUser} = React.useContext(itemContext);
   const navigate = useNavigate();
+  let params = useParams();
 
-  const newItemSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setNewItem({...inputs,userid:currentUser.id})
+    if (props.method === 'PATCH') {
+      setPatchItem(Object.fromEntries( Object.entries(inputs).filter(value => value[1] !== '') ) )
+    }
+
+    if (props.method === 'POST') {
+      setNewItem({...inputs,userid:currentUser.id})
+    }
   }
 
   useEffect(()=>{
+    fetch(`http://localhost:3001/item/${params.id}`,{...reqOptions,body:JSON.stringify(patchItem)})
+    .then(res => {
+      if(res.status === 200) {
+        props.updateToggle()
+      }
+    })
+  }, [patchItem])
+
+  useEffect(()=>{
     if(Object.keys(newItem).length !== 0) {
-      console.log(newItem)
-    const reqOptions = {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(newItem)
-    }
-    console.log("newItem",newItem)
-    fetch(`http://localhost:3001/newitem`,reqOptions)
+
+    fetch(`http://localhost:3001/newitem`,{...reqOptions,body:JSON.stringify(newItem)})
     .then(res => {
       if(!res.ok) throw new Error(res.statusText)
       if(res.status === 201){
@@ -39,15 +69,29 @@ const NewItem = () => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs(values => ({...values,[name]:value}))
-    console.log(inputs)
   }
 
   return (<>
-    <h1>Create new Item</h1>
-    <form onSubmit={newItemSubmit}>
-      Item Name<input name="item_name" onChange={handleChange}/><br/>
-      Description<input name="description" onChange={handleChange}/><br/>
-      Quantity<input name="quantity" onChange={handleChange}/><br/>
+    <h1>{header}</h1>
+    <form onSubmit={handleSubmit}>
+      Item Name<input 
+        name="item_name" 
+        onChange={handleChange}
+        defaultValue={defaultValues.item_name}
+        /><br/>
+
+      Description<input 
+        name="description" 
+        onChange={handleChange}
+        defaultValue={defaultValues.description}
+      /><br/>
+
+      Quantity<input 
+        name="quantity" 
+        onChange={handleChange}
+        defaultValue={defaultValues.quantity}
+        /><br/>
+
       <button type="submit">Submit</button>
     </form>
   </>)

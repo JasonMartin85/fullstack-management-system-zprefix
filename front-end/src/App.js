@@ -20,7 +20,7 @@ function App() {
         <Route path = "/Home" element = {<Home />} />  
         <Route path = "/Item/:id" element = {<Item />} />
         <Route path = "/Login" element = {<Login />} />
-        <Route path = "/NewItem" element = {<NewItem />} />
+        <Route path = "/NewItem" element = {<NewItem method="POST"/>} />
       </Routes>
     </itemContext.Provider>
     </>);

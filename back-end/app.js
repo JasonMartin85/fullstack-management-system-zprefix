@@ -85,5 +85,14 @@ app.delete('/item/:id', (req,res) => {
   })
 })
 
+app.patch('/item/:id', (req,res) => {
+  knex('items')
+    .where('id','=',req.params.id)
+    .update(req.body)
+    .then(data => res.status(200).json(data))
+    .catch((err) => {res.status(404).send(err)})
+
+})
+
 
 module.exports = app;
