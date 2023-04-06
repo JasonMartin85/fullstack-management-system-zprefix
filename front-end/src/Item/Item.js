@@ -45,7 +45,7 @@ const Item = () => {
     {!updateToggle ? <>
     <div className="px-9">
       <h3 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-5xl">Detail Item View</h3>
-        <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 p-10 w-1/4">  
+        <div className="block max-w-lg rounded-lg bg-white shadow-lg dark:bg-neutral-700 p-10">  
         <h3 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 text-center text-4xl">{currentItem.item_name}</h3>
           <div className="font-bold ml-3">Item ID: </div>
           <div className="ml-4 mb-4 text-base text-neutral-600 dark:text-neutral-200">{`${currentItem.id}`}</div>

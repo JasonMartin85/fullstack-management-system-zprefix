@@ -85,7 +85,7 @@ const NewItem = (props) => {
 <section className="col-span-2 place-items-center h-screen w-full mt-10">
   <div className="px-9">
     <h3 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-5xl">{header}</h3>
-    <div className="block w-1/4 rounded-lg bg-white shadow-lg dark:bg-neutral-700 p-10 ">
+    <div className="block max-w-lg rounded-lg bg-white shadow-lg dark:bg-neutral-700 p-10 ">
     <form onSubmit={handleSubmit}>
       <div className="font-bold">Item Name</div>
       <input 

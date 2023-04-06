@@ -7,8 +7,10 @@ exports.up = function(knex) {
     table.increments('id');
     table.integer('userid');
     table.string('item_name');
-    table.string('description');
-    table.integer('quantity')
+    table.string('sci_name')
+    table.text('description');
+    table.integer('quantity');
+    table.text('img_string');
   })
 };
 
