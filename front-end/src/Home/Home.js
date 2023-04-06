@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Table } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 
 const Home = () => {
   const [itemsArray, setItemsArray] = useState();
@@ -50,9 +50,10 @@ const Home = () => {
                     );
                   })
                 ) : (
-                  <tr>
-                    <th>Loading...</th>
-                  </tr>
+                  <Spinner
+                  color="success"
+                  aria-label="Success spinner example"
+                />
                 )}
               </tbody>
             </table>

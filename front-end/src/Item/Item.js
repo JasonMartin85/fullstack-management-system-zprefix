@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import {useParams, useNavigate}  from 'react-router-dom'
 import NewItem from '../NewItem/NewItem.js'
-import {Button} from 'flowbite-react'
+import {Button, Spinner} from 'flowbite-react'
 
 const Item = () => {
   const [currentItem,setCurrentItem] = useState();
@@ -57,9 +57,12 @@ const Item = () => {
         
       :<> 
         <NewItem method="PATCH" defaultValues={currentItem} updateToggle={setUpdateToggle} />
-        <Button onClick={()=>setUpdateToggle(false)}>Cancel</Button></>}
+      </>}
       </> : 
-      <span>Loading...</span>}
+        <Spinner
+        color="success"
+        aria-label="Success spinner example"
+      />}
   </div>
   </section>)
 }
