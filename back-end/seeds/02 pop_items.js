@@ -12,7 +12,7 @@ exports.seed = async function(knex) {
       sci_name: 'Abies procera', 
       description: 'A. procera is a large evergreen conifer with a narrow conic crown, growing up to 70 meters (230 ft) tall and 2 m (6 ft 7 in) in trunk diameter, rarely to 90 m (295 ft) tall and 2.7 m (8 ft 10 in) thick. The bark on young trees is smooth and gray with resin blisters, becoming red-brown, rough and fissured on old trees, usually less than 5 centimeters (2 in) thick; the inner bark is reddish. The leaves are needle-like, 1–3.5 cm (1⁄2–1+1⁄2 in) long, glaucous blue-green above and below with strong stomal bands, and a blunt to notched tip. They are arranged spirally on the shoot, but twisted slightly S-shaped to be upcurved above the shoot. The cones are erect, 11–22 cm (4+1⁄4–8+3⁄4 in) long and 6 cm (2+1⁄4 in) thick, with the purple scales almost completely hidden by the long exserted yellow-green bract scales; they ripen brown and disintegrate to release the winged seeds in fall. Viable seeds are only produced every few years.', 
       quantity:23,
-      img_string:"https://en.wikipedia.org/wiki/File:Abies_procera_Rog%C3%B3w_1.jpg"
+      img_string:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Abies_procera_Rog%C3%B3w_1.jpg/800px-Abies_procera_Rog%C3%B3w_1.jpg"
     },
     {
       userid: 1, 
@@ -20,7 +20,7 @@ exports.seed = async function(knex) {
       sci_name: 'Genipa americana', 
       description: 'Genipa americana trees are up to 30 m tall and up to 60 cm dbh. Their bark is smooth with little fissures. The leaves are opposite, obovate, or obovate oblong, 10–35 cm long, 6–13 cm wide, and glossy dark green, with entire margin, acute or acuminate apex, and attenuated base. The inflorescences are cymes up to 10 cm long. The flowers are white to yellowish, slightly fragrant, calyx bell-shaped, corolla at 2–4.5 cm long, trumpet-shaped, and five- or six-lobed. The five short stamens are inserted on top of the corolla tube. The fruit is a thick-skinned edible greyish berry 10–12 cm long, 5–9 cm in diameter.', 
       quantity:5,
-      img_string: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Genipa_americana.jpg/220px-Genipa_americana.jpg'
+      img_string: 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Genipa_americana_L._-_Flickr_-_Alex_Popovkin%2C_Bahia%2C_Brazil.jpg'
     },
     {
       userid: 2, 
@@ -28,7 +28,7 @@ exports.seed = async function(knex) {
       sci_name: 'Quercus alba', 
       description: 'Quercus alba typically reaches heights of 24 to 30 metres (80–100 feet) at maturity, and its canopy can become quite massive as its lower branches are apt to extend far out laterally, parallel to the ground. Trees growing in a forest will become much taller than ones in an open area which develop to be short and massive. The Mingo Oak was the tallest known white oak at over two hundred feet with a trunk height of 44.2 m (145 ft) before it was felled in 1938. It is not unusual for a white oak tree to be as wide as it is tall, but specimens growing at high altitudes may only become small shrubs. The bark is a light ash-gray and peels somewhat from the top, bottom and/or sides.', 
       quantity:200,
-      img_string: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Keeler_Oak_Tree_-_distance_photo%2C_May_2013.jpg/220px-Keeler_Oak_Tree_-_distance_photo%2C_May_2013.jpg'
+      img_string: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Keeler_Oak_Tree_-_distance_photo%2C_May_2013.jpg/1024px-Keeler_Oak_Tree_-_distance_photo%2C_May_2013.jpg'
     },
     {
       userid: 3, 
@@ -36,7 +36,7 @@ exports.seed = async function(knex) {
       sci_name: 'Ulmus americana', 
       description: 'Ulmus americana, generally known as the American elm or, less commonly, as the white elm or water elm,[a] is a species of elm native to eastern North America, naturally occurring from Nova Scotia west to Alberta and Montana, and south to Florida and central Texas. The American elm is an extremely hardy tree that can withstand winter temperatures as low as −42 °C (−44 °F). Trees in areas unaffected by Dutch elm disease (DED) can live for several hundred years. A prime example of the species was the Sauble Elm, which grew beside the banks of the Sauble River in Ontario, Canada, to a height of 43 m (140 ft), with a d.b.h of 196 cm (6.43 ft) before succumbing to DED; when it was felled in 1968, a tree-ring count established that it had germinated in 1701. For over 80 years, U. americana had been identified as a tetraploid, i.e. having double the usual number of chromosomes, making it unique within the genus. However, a study published in 2011 by the Agricultural Research Service of the USDA revealed that about 20% of wild American elms are diploid and may even constitute another species. Moreover, several triploid trees known only in cultivation, such as Jefferson, are possessed of a high degree of resistance to DED, which ravaged American elms in the 20th century. This suggests that the diploid parent trees, which have markedly smaller cells than the tetraploid, may too be highly resistant to the disease.', 
       quantity:12,
-      img_string: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/American_Elm_Tree%2C_Old_South_Street%2C_Northampton%2C_MA_-_October_2019.jpg/220px-American_Elm_Tree%2C_Old_South_Street%2C_Northampton%2C_MA_-_October_2019.jpg'
+      img_string: 'https://upload.wikimedia.org/wikipedia/commons/8/86/American_Elm_Tree%2C_Old_South_Street%2C_Northampton%2C_MA_-_October_2019.jpg'
     },
     {
       userid: 2, 

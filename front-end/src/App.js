@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Home from './Home/Home.js'
 import Item from './Item/Item.js'
@@ -9,10 +9,22 @@ import NewItem from './NewItem/NewItem.js'
 
 export const itemContext = React.createContext();
 
+
+
 function App() {
   const [currentUser, setCurrentUser] = useState({})
-  return (<>
-    <itemContext.Provider value = {{currentUser,setCurrentUser}}>
+  const [itemCount, setItemCount] = useState({})
+  
+  useEffect(() => {
+    fetch(`http://localhost:3001/countitems`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setItemCount(data[0].count);
+      });
+  }, []);
+  return (<div className="h-screen bg-emerald-600">
+    <itemContext.Provider value = {{currentUser,setCurrentUser,itemCount, setItemCount}}>
       
       <Navbar/>
       <Routes>
@@ -23,7 +35,7 @@ function App() {
         <Route path = "/NewItem" element = {<NewItem method="POST"/>} />
       </Routes>
     </itemContext.Provider>
-    </>);
+    </div>);
 }
 
 export default App;

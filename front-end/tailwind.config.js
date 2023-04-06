@@ -5,7 +5,10 @@ module.exports = {
     './node_modules/react-tailwindcss-select/dist/index.esm.js',
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+      }
+    },
   },
   plugins: [require('flowbite/plugin')],
 }
