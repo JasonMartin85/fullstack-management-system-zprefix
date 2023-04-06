@@ -21,7 +21,16 @@ const Home = () => {
   return(<>
     <h1>Home</h1>
     <ul>
-      {itemsArray ? <div>{itemsArray.map(item => <div key={item.id} onClick={()=>{itemClick(item.id)}}>{item.item_name} {item.description}</div>)}</div> : <div>Loading</div>}
+      {itemsArray 
+        ? <div>{itemsArray.map(item => 
+            <div  
+              key={item.id} 
+              onClick={()=>{itemClick(item.id)
+            }}>
+                {item.item_name} {item.description ? item.description.slice(0,100) : <div></div>}
+            </div>)}
+          </div> 
+        : <div>Loading</div>}
     </ul>
   </>)
 }

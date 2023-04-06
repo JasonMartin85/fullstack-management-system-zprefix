@@ -25,7 +25,7 @@ const Item = () => {
     {currentItem  && itemCreator ? <>
     {console.log(itemCreator)}
     <h1>Item {currentItem.id}</h1>
-    <div>{`Name: ${currentItem.name}`}</div>
+    <div>{`Name: ${currentItem.item_name}`}</div>
     <div>{`Description: ${currentItem.description}`}</div>
     <div>{`Created By: ${itemCreator}`}</div>
     <button>Edit</button>
