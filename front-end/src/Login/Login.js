@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {itemContext} from '../App.js'
+import {Button} from 'flowbite-react'
 
 const Login = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
@@ -40,12 +41,18 @@ const Login = () => {
   }
 
   return(<>
-    <h1>Login</h1>
-    <form onSubmit={handleLogin}>
-      Username<input name="username" onChange={handleChange}/>
-      Password<input name="password" onChange={handleChange}/>
-      <button type="submit" >Login</button>
-    </form>
+    <section className="col-span-2 place-items-center h-screen w-full mt-10">
+      <div className="px-9">
+        <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+        <form onSubmit={handleLogin}>
+          <h1 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">Login</h1>
+          Username<input  name="username" className="border border-2 rounded" onChange={handleChange}/><br/>
+          Password<input name="password" className="border border-2 rounded" onChange={handleChange}/>
+          <Button type="submit" >Login</Button>
+        </form>
+        </div>
+      </div>
+    </section>
   </>)
 }
 

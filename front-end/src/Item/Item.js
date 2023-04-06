@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import {useParams, useNavigate}  from 'react-router-dom'
 import NewItem from '../NewItem/NewItem.js'
+import {Button} from 'flowbite-react'
 
 const Item = () => {
   const [currentItem,setCurrentItem] = useState();
@@ -39,26 +40,28 @@ const Item = () => {
   })
   },[updateToggle])
 
-  return(<>
-    
+  return(<section className="col-span-2 place-items-center h-screen w-full mt-10">
+    <div className="px-9">
     {currentItem  && itemCreator ? <>
     {!updateToggle 
-      ? <>  
-        <h1>Item {currentItem.id}</h1>
-          <div>{`Item Name: ${currentItem.item_name}`}</div>
-          <div>{`Description: ${currentItem.description}`}</div>
-          <div>{`Quantity: ${currentItem.quantity}`}</div>
-          <div>{`Created By: ${itemCreator}`}</div>
+      ? <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">  
+        <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">Item {currentItem.id}</h5>
+          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Item Name: ${currentItem.item_name}`}</div>
+          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Description: ${currentItem.description}`}</div>
+          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Quantity: ${currentItem.quantity}`}</div>
+          <div className="mb-4 text-base text-neutral-600 dark:text-neutral-200">{`Created By: ${itemCreator}`}</div>
 
-          <button onClick={updateItem}>Edit</button>
-          <button onClick={deleteItem}>Delete</button>
-        </> :<> 
-              <NewItem method="PATCH" defaultValues={currentItem} updateToggle={setUpdateToggle} />
-              <button onClick={()=>setUpdateToggle(false)}>Cancel</button></>}
+          <Button onClick={updateItem}> Edit</Button>
+          <Button onClick={deleteItem}>Delete</Button>
+        </div> 
+        
+      :<> 
+        <NewItem method="PATCH" defaultValues={currentItem} updateToggle={setUpdateToggle} />
+        <Button onClick={()=>setUpdateToggle(false)}>Cancel</Button></>}
       </> : 
       <span>Loading...</span>}
-
-  </>)
+  </div>
+  </section>)
 }
 
 export default Item;

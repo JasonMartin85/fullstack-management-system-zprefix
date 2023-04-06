@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import {itemContext} from '../App.js'
+import {Button} from 'flowbite-react'
 
 const NewItem = (props) => {
   let defaultValues = {item_name:"",description:"",quantity:""}
@@ -40,6 +41,15 @@ const NewItem = (props) => {
     }
   }
 
+  const cancelClick = (e) => {
+    if (props.method === 'PATCH') {
+      props.updateToggle()
+    }
+    if (props.method === 'POST') {
+      navigate('/home')
+    }
+  }
+
   useEffect(()=>{
     fetch(`http://localhost:3001/item/${params.id}`,{...reqOptions,body:JSON.stringify(patchItem)})
     .then(res => {
@@ -71,30 +81,39 @@ const NewItem = (props) => {
     setInputs(values => ({...values,[name]:value}))
   }
 
-  return (<>
-    <h1>{header}</h1>
+  return (
+<section className="col-span-2 place-items-center h-screen w-full mt-10">
+  <div className="px-9">
+    <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+    <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">{header}</h5>
     <form onSubmit={handleSubmit}>
       Item Name<input 
+        className="border border-2 rounded mb-2 ml-4" 
         name="item_name" 
         onChange={handleChange}
         defaultValue={defaultValues.item_name}
         /><br/>
 
       Description<input 
+        className="border border-2 rounded mb-2 ml-4" 
         name="description" 
         onChange={handleChange}
         defaultValue={defaultValues.description}
       /><br/>
 
-      Quantity<input 
+      Quantity<input
+        className="border border-2 rounded mb-2 ml-8"
         name="quantity" 
         onChange={handleChange}
         defaultValue={defaultValues.quantity}
         /><br/>
 
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
+      <Button onClick={()=>cancelClick()}>Cancel</Button>
     </form>
-  </>)
+    </div>
+  </div>
+  </section>)
 }
 
 export default NewItem
