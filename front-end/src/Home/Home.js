@@ -19,41 +19,50 @@ const Home = () => {
     navigate(`/item/${id}`);
   };
 
-  return (
-    <div>
-      <h1 className="text-3xl font-bold">Home</h1>
+  return (<>
+    <h1 className="text-3xl font-bold">Home</h1>
 
-      <table class="table-fixed">
-        <thread>
-          <tr>
-            <th className="width-1">ID</th>
-            <th className="width-52">Name</th>
-            <th className="width-96">Description</th>
-          </tr>
-        </thread>
-        <tbody>
-        {itemsArray ? (
-          itemsArray.map((item) => {
-            return (
+    <div className="flex flex-col">
+      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div className="overflow-hidden">
+            <table className="min-w-full text-left text-sm font-light">
+              <thead className="border-b font-medium dark:border-neutral-500 bg-neutral-100">
+                <tr>
+                  <th scope="col" className="px-6 py-4">#</th>
+                  <th scope="col" className="px-6 py-4">Item Name</th>
+                  <th scope="col" className="px-6 py-4">Description</th>
+                </tr>
+              </thead>
               
-              <tr>
-              <td>{item.id}</td>
-              <td>{item.item_name}</td>
-              <td>{item.description ? item.description.slice(0,100) : <></>}</td>
-              </tr>
-            );
-          })
-        ) : (
-          <div>Loading</div>
-        )}
-        </tbody>
-      </table>
+              <tbody>
+                {itemsArray ? (
+                  itemsArray.map((item) => {
+                    return (
+                      <tr 
+                      className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
+                      onClick={()=>itemClick(item.id)}>
+                        <td className="whitespace-nowrap px-6 py-4 font-medium">{item.id}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{item.item_name}</td>
+                        <td className="whitespace-nowrap px-6 py-4">{item.description ? item.description.slice(0,100) : <></>}</td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <th>Loading...</th>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-};
+    </>)}
 
 export default Home;
 
-// onClick={()=>{itemClick(item.id)}
-//
+{/* // 
+// */}
 
