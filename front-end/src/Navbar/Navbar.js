@@ -35,7 +35,7 @@ const Navbar = () => {
     </div>
   </nav>
   {console.log(location)}
-    <div className={`ml-2 font-bol ${location.pathname === '/Login' ? "text-transparent" : "text-black"}`}>Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
+    <div className={`ml-2 font-medium ${location.pathname === '/Login' ? "text-transparent" : "text-black"}`}>Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
     </>
 )}
 

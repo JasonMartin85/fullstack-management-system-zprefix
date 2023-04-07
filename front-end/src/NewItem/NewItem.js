@@ -57,19 +57,39 @@ const NewItem = (props) => {
 
   useEffect(()=>{
     if(patchItem !== undefined && Object.keys(patchItem).length !== 0) {
+      let errorMessage = ''
+      let numQuantity = Number(patchItem.quantity)
+      if(!Number.isInteger(numQuantity) || numQuantity  % 1  !== 0 || numQuantity < 0)
+        errorMessage += `-${patchItem.quantity} not a positive whole number\n`
+
+    if (errorMessage === '') {
     fetch(`http://localhost:3001/item/${params.id}`,{...reqOptions,body:JSON.stringify(patchItem)})
     .then(res => {
       if(res.status === 200) {
-        console.log(res.json())
         props.updateToggle()
       }
     })
+    } else {
+      alert(`Unable to update item!! \n\nPlease fix the following issues:\n${errorMessage}`)
+    }
   }
   }, [patchItem])
 
   useEffect(()=>{
     if(Object.keys(newItem).length !== 0) {
+      let errorMessage = ''
+      let numQuantity = Number(newItem.quantity)
+      if(newItem.item_name === '')
+        errorMessage += '-Common name field blank\n'
+      if(newItem.description === '')
+        errorMessage += '-Description field blank\n'
+      if(newItem.quantity === '')
+        errorMessage += '-Quantity field blank\n'
+      if(!Number.isInteger(numQuantity) || numQuantity  % 1  !== 0 || numQuantity < 0)
+        errorMessage += `-${newItem.quantity} not a positive whole number\n`
+      console.log(errorMessage)
 
+    if(errorMessage === '') {
     fetch(`http://localhost:3001/newitem`,{...reqOptions,body:JSON.stringify(newItem)})
     .then(res => {
       if(!res.ok) throw new Error(res.statusText)
@@ -79,7 +99,10 @@ const NewItem = (props) => {
       } 
     })
     .catch(err => console.log(err))
+    } else {
+    alert(`Unable to add new item!! \n\nPlease fix the following issues:\n${errorMessage}`)
     }
+  }
   },[newItem])
 
 
