@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import {Button} from 'flowbite-react'
 
@@ -43,7 +43,7 @@ const Login = () => {
   }
 
   return(<>
-    <section className="col-span-2 place-items-center h-screen w-full mt-10">
+    <section className="col-span-2 place-items-center h-screen w-full mt-10 ">
       <div className="px-9 flex justify-center">
         <div className="block max-w-sm rounded-lg border border-black bg-green-700 shadow-lg px-5">
         <form onSubmit={handleLogin} className="flex flex-col justify-center">
@@ -62,6 +62,7 @@ const Login = () => {
         </form>
         </div>
       </div>
+        <div className="flex justify-center text-sky-700 font-bold text-underline"><Link to='/Home'>No Account? Click here to view as Visitor</Link></div>
     </section>
   </>)
 }

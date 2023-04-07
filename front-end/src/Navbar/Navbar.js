@@ -1,10 +1,12 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import { GiPineTree, GiTreeBranch, GiBirchTrees } from "react-icons/gi"
 
 const Navbar = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
+  const location = useLocation()
+
 
   const logoutUser = () => {
     let reqOpts = {
@@ -32,7 +34,8 @@ const Navbar = () => {
     </div>
     </div>
   </nav>
-    <div className="ml-2 font-bold">Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
+  {console.log(location)}
+    <div className={`ml-2 font-bol ${location.pathname === '/Login' ? "text-transparent" : "text-black"}`}>Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
     </>
 )}
 
