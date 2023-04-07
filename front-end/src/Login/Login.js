@@ -1,12 +1,29 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import {Button} from 'flowbite-react'
+
+
 
 const Login = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState();
+
+
+  useEffect(()=>{
+    let reqOpts = {
+      method: "POST",
+      "Access-Control-Allow-Origin": "*",
+      credentials: "include",
+    }
+    fetch(`http://localhost:3001/validate-session`,reqOpts)
+    .then(res => res.json())
+    .then(data => {
+      setCurrentUser(data)
+      navigate('/home')
+    })
+  },[]) 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -14,7 +31,8 @@ const Login = () => {
     const reqOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(inputs)
+      body: JSON.stringify(inputs),
+      credentials: "include"
     }
 
     fetch(`http://localhost:3001/login`, reqOptions)
@@ -25,8 +43,7 @@ const Login = () => {
       }
     })
     .then( data => {
-      console.log(data)
-      setCurrentUser(data)
+      setCurrentUser(data.userData)
       navigate('/home')
     })
     .catch(err => console.log(err))

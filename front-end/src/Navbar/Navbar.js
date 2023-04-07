@@ -7,7 +7,15 @@ const Navbar = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
 
   const logoutUser = () => {
-    setCurrentUser({})
+    let reqOpts = {
+      method: "POST",
+      credentials: "include",
+    }
+    fetch(`http://localhost:3001/logout`,reqOpts)
+    .then((res)=>{
+      console.log(res)
+      setCurrentUser({})
+    })
   }
 
   return(<> 
