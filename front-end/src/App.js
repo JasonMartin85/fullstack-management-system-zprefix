@@ -9,8 +9,6 @@ import NewItem from './NewItem/NewItem.js'
 
 export const itemContext = React.createContext();
 
-
-
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [itemCount, setItemCount] = useState({})
@@ -20,7 +18,6 @@ function App() {
     fetch(`http://localhost:3001/countitems`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         setItemCount(data[0].max);
       });
   }, []);
@@ -31,14 +28,14 @@ function App() {
       "Access-Control-Allow-Origin": "*",
       credentials: "include",
     }
-    if (!currentUser) {
+
     fetch(`http://localhost:3001/validate-session`,reqOpts)
     .then(res => res.json())
     .then(data => {
       setCurrentUser(data)
       navigate('/home')
     })
-  }
+  
   },[]) 
 
   return (

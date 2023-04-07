@@ -10,9 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [inputs,setInputs] = useState();
 
-
-
-
   const handleLogin = (e) => {
     e.preventDefault();
 
