@@ -59,6 +59,7 @@ Once the application is running successfully...
   - After a successful login, or by clicking the visitor link you will be navigated to the home page. 
   - This page displays all trees currently stored in the database.
   - Clicking any tree will direct you to the detail page for that particular tree.
+  - After navigating away clicking "The Forest Floor" on the navbar will bring you back. 
 
 ### Individual Tree View
   - This page displays details, description, and an image of the chosen tree.
