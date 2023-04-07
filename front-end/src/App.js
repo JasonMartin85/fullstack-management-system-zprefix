@@ -16,11 +16,16 @@ function App() {
   const navigate = useNavigate()
   
   useEffect(() => {
-    fetch(`http://localhost:3001/list-items`)
-      .then((res) => res.json())
+    fetch(`http://localhost:3001/list-items`)  
+    .then((res) => { 
+      if (!res.ok) throw new Error(res.statusText);
+      return(res.json())
+     })
       .then((data) => {
         setItemList(data);
-      });
+      })
+      .catch(err=>console.log(err))
+
   }, [listToggle]);
 
   useEffect(()=>{
@@ -31,12 +36,15 @@ function App() {
     }
 
     fetch(`http://localhost:3001/validate-session`,reqOpts)
-    .then(res => res.json())
+    .then((res) => { 
+      if (!res.ok) throw new Error(res.statusText);
+      return(res.json())
+      })
     .then(data => {
       setCurrentUser(data)
       navigate('/home')
     })
-  
+    .catch(err=>console.log(err))
   },[]) 
 
   return (<div className="bg-emerald-900">

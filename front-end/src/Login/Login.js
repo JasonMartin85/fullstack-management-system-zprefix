@@ -3,8 +3,6 @@ import {useNavigate, Link} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import {Button} from 'flowbite-react'
 
-
-
 const Login = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
   const navigate = useNavigate();
@@ -22,9 +20,12 @@ const Login = () => {
 
     fetch(`http://localhost:3001/login`, reqOptions)
     .then(res => {
-      if(!res.ok) throw new Error(res.statusText)
       if(res.status===200) {
         return(res.json())
+      }
+      if(!res.ok) {
+        alert(`Username/Password combination not found, please try again.`)
+        throw new Error(res.statusText)
       }
     })
     .then( data => {
@@ -39,7 +40,6 @@ const Login = () => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs(values => ({...values,[name]:value}))
-    console.log(inputs)
   }
 
   return(<>
@@ -50,11 +50,11 @@ const Login = () => {
           <h1 className="mb-2 mt-1 leading-tight text-neutral-800 dark:text-neutral-50 text-center text-3xl">Login</h1>
           <div className="flex row justify-center m-2">
           <span className="font-bold">Username</span>
-          <input name="username" className=" ml-2 border border-black border-2 rounded" onChange={handleChange}/><br/>
+          <input name="username" className=" h-7 w-48 pl-2 ml-2 border border-black border-2 rounded" onChange={handleChange}/><br/>
           </div>
           <div className="flex row justify-center">
           <span className="font-bold">Password</span>
-          <input name="password" className=" ml-3 border border-black border-2 rounded" onChange={handleChange}/>
+          <input type="password" name="password" className=" h-7 w-48 ml-3 border border-black border-2 rounded" onChange={handleChange}/>
           </div>
           <div className="flex flex-row justify-center m-5">
           <Button type="submit" className="w-1/2" >Login</Button>

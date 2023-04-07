@@ -10,10 +10,14 @@ const Home = () => {
 
   useEffect(() => {
     fetch(`http://localhost:3001/items`)
-      .then((res) => res.json())
+      .then((res) => { 
+      if (!res.ok) throw new Error(res.statusText);
+      return(res.json())
+      })
       .then((data) => {
         setItemsArray(data);
-      });
+      })
+      .catch(err=>console.log(err))
   }, []);
 
   

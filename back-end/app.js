@@ -47,7 +47,6 @@ app.use(
 )
 
 app.post("/validate-session", (req,res) => {
-  console.log(req.sessionID,req.session.userData)
 
   if (req.sessionID && req.session.userData) {
     res.status(200).json(req.session.userData)
@@ -58,11 +57,9 @@ app.post("/validate-session", (req,res) => {
 })
 
 app.post('/logout', (req,res) => {
-  console.log(req.session)
   try {
     req.session.destroy();
     res.clearCookie('connect.sid')
-    console.log(req.session)
     res.status(200).json('User logged out')
   } catch(err) {
     return res.status(500).json('Error processing request')
@@ -71,7 +68,7 @@ app.post('/logout', (req,res) => {
 
 app.post('/login', (req,res,next) => {
   const {username,password} = req.body;
-  
+
   knex('users').where('username','=',username)
   .then(data => {
     if(data[0].password === password) {
@@ -84,7 +81,7 @@ app.post('/login', (req,res,next) => {
     } else {
         res.status(401).json("Username Password combination not found, please try again")
     }
-  })
+  }).catch( err => res.send(401).status('Username Password combination not found please try again'))
 })
       
 app.get('/items', (req,res) => {
@@ -94,7 +91,6 @@ app.get('/items', (req,res) => {
     .orderBy('id')
     .then(data => { res.status(200).send(data)})
     .catch((err) => {
-      console.log(err)
       res.status(404).send('Unable to access request resources, please try again later...')
     })
 })
@@ -137,7 +133,6 @@ app.get('/user/:id', (req,res) => {
 })
 
 app.delete('/item/:id', (req,res) => {
-  console.log(req.sessionID)
   if (req.sessionID && req.session.userData) {
     knex('items')
       .where('id','=',req.params.id)

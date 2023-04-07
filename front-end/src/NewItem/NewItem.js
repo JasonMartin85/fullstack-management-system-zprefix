@@ -66,6 +66,7 @@ const NewItem = (props) => {
     fetch(`http://localhost:3001/item/${params.id}`,{...reqOptions,body:JSON.stringify(patchItem)})
     .then(res => {
       if(res.status === 200) {
+        alert('Item updated!')
         props.updateToggle()
       }
     })
@@ -95,6 +96,7 @@ const NewItem = (props) => {
       if(!res.ok) throw new Error(res.statusText)
       if(res.status === 201){
         setListToggle(!listToggle)
+        alert('New Item added!')
         navigate('/home')
       } 
     })
@@ -114,10 +116,10 @@ const NewItem = (props) => {
   }
 
   return (
-<section className="col-span-2 mt-4 w-full flex justify-center">
+<section className="col-span-2 mt-4 w-full flex justify-center ">
   <div className="px-9">
     <h3 className="mb-2 font-medium leading-tight text-neutral-800 text-3xl">{header}</h3>
-    <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg p-10 flex justify-center flex-col">
+    <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg p-10 flex justify-center flex-col border border-black">
     <form className="mr-3" onSubmit={handleSubmit}>
       <div className="font-bold">Common Name</div>
       <input 

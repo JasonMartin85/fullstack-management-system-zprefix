@@ -15,7 +15,6 @@ const Navbar = () => {
     }
     fetch(`http://localhost:3001/logout`,reqOpts)
     .then((res)=>{
-      console.log(res)
       setCurrentUser({})
     })
   }
@@ -24,17 +23,16 @@ const Navbar = () => {
   <nav className= "flex justify-between flex-wrap shadow-lg bg-emerald-950/80 pt-2 pb-2 black border-b-2 border-black font-bold ">
 
 
-        <div className="navbar-link flex flex-row gap-1 ml-2" >
+        <div className="navbar-link flex flex-row gap-1 ml-2 items-center" >
         <GiTreeBranch/><Link to='/Home'> The Forest Floor</Link>
         </div>
 
         <div className="flex flex-row">
-        <Link className={`mr-5 flex flex-row gap-1  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/NewItem'}><GiPineTree/><button>Add Tree</button></Link>
-        <Link className=" navbar-link mr-5 flex flex-row gap-1" to='/Login'><GiBirchTrees/><button onClick={logoutUser}>{currentUser.username ? <>Logout</> : <>Login</>}</button></Link><br/>
+        <Link className={`mr-5 flex flex-row gap-1 items-center  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/NewItem'}><GiPineTree/><button>Add Tree</button></Link>
+        <Link className=" navbar-link mr-5 flex flex-row gap-1 items-center" to='/Login'><GiBirchTrees/><button onClick={logoutUser}>{currentUser.username ? <>Logout</> : <>Login</>}</button></Link><br/>
         </div>
 
   </nav>
-  {console.log(location)}
     <div className={`ml-2 font-medium ${location.pathname === '/Login' ? "text-transparent" : "text-black"}`}>Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
     </>
 )}
