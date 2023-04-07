@@ -45,16 +45,16 @@ const Login = () => {
   return(<>
     <section className="col-span-2 place-items-center h-screen w-full mt-10">
       <div className="px-9 flex justify-center">
-        <div className="block max-w-sm rounded-lg bg-green-700 shadow-lg px-5">
+        <div className="block max-w-sm rounded-lg border border-black bg-green-700 shadow-lg px-5">
         <form onSubmit={handleLogin} className="flex flex-col justify-center">
           <h1 className="mb-2 mt-1 leading-tight text-neutral-800 dark:text-neutral-50 text-center text-3xl">Login</h1>
           <div className="flex row justify-center m-2">
           <span className="font-bold">Username</span>
-          <input name="username" className=" ml-2 border border-2 rounded" onChange={handleChange}/><br/>
+          <input name="username" className=" ml-2 border border-black border-2 rounded" onChange={handleChange}/><br/>
           </div>
           <div className="flex row justify-center">
           <span className="font-bold">Password</span>
-          <input name="password" className=" ml-3 border border-2 rounded" onChange={handleChange}/>
+          <input name="password" className=" ml-3 border border-black border-2 rounded" onChange={handleChange}/>
           </div>
           <div className="flex flex-row justify-center m-5">
           <Button type="submit" className="w-1/2" >Login</Button>

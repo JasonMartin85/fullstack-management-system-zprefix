@@ -19,13 +19,13 @@ const Navbar = () => {
   }
 
   return(<> 
-  <nav className= "flex flex-wrap shadow-lg bg-emerald-950/80 pt-2 pb-2">
+  <nav className= "flex flex-wrap shadow-lg bg-emerald-950/80 pt-2 pb-2 black border-b-2 border-black">
       <div className="flex flex-wrap font-bold ">
 
     <div className="navbar-link flex flex-row gap-1 ml-2" >
     <GiTreeBranch/><Link to='/Home'> The Forest Floor</Link>
     </div>
-    
+
     <div className="flex absolute right-0">
     <Link className={`mr-5 flex flex-row gap-1 ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/NewItem'}><GiPineTree/><button>Add Tree</button></Link>
     <Link className="navbar-link mr-5 flex flex-row gap-1" to='/Login'><GiBirchTrees/><button onClick={logoutUser}>{currentUser.username ? <>Logout</> : <>Login</>}</button></Link><br/>

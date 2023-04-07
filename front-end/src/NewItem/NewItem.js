@@ -31,7 +31,7 @@ const NewItem = (props) => {
 
   const [newItem, setNewItem] = useState({})
   const [patchItem, setPatchItem] = useState({})
-  const {currentUser} = React.useContext(itemContext);
+  const {currentUser,listToggle,setListToggle} = React.useContext(itemContext);
   const navigate = useNavigate();
   let params = useParams();
 
@@ -74,6 +74,7 @@ const NewItem = (props) => {
     .then(res => {
       if(!res.ok) throw new Error(res.statusText)
       if(res.status === 201){
+        setListToggle(!listToggle)
         navigate('/home')
       } 
     })
@@ -97,7 +98,7 @@ const NewItem = (props) => {
     <form className="mr-3" onSubmit={handleSubmit}>
       <div className="font-bold">Common Name</div>
       <input 
-        className="border border-2 rounded mb-2 ml-4 w-full" 
+        className="border border-2 border-black pl-1 mt-1 rounded mb-2 ml-4 w-full" 
         name="item_name" 
         onChange={handleChange}
         defaultValue={defaultValues.item_name}
@@ -105,7 +106,7 @@ const NewItem = (props) => {
 
       <div className="font-bold">Scientific Name</div>
       <input 
-        className="border border-2 rounded mb-2 ml-4 w-full" 
+        className="border border-2 border-black pl-1 mt-1 rounded mb-2 ml-4 w-full" 
         name="sci_name" 
         onChange={handleChange}
         defaultValue={defaultValues.sci_name}
@@ -115,7 +116,7 @@ const NewItem = (props) => {
       <textarea
         rows="10"
         cols="50" 
-        className="border border-2 rounded mb-2 ml-4 w-full"  
+        className="border border-2 border-black pl-1 mt-1 rounded mb-2 ml-4 w-full"  
         name="description" 
         onChange={handleChange}
         defaultValue={defaultValues.description}
@@ -123,7 +124,7 @@ const NewItem = (props) => {
 
       <div className="font-bold">Quantity</div>
       <input
-        className="border border-2 rounded mb-2 ml-4 w-full"
+        className="border border-2 border-black pl-1 mt-1 rounded mb-2 ml-4 w-full"
         name="quantity" 
         onChange={handleChange}
         defaultValue={defaultValues.quantity}
@@ -131,7 +132,7 @@ const NewItem = (props) => {
 
       <div className="font-bold">Image Link</div>
       <input 
-        className="border border-2 rounded mb-2 ml-4 w-full" 
+        className="border border-2 border-black pl-1 mt-1 rounded mb-2 ml-4 w-full" 
         name="img_string" 
         onChange={handleChange}
         defaultValue={defaultValues.img_string}

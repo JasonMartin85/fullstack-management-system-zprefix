@@ -11,16 +11,17 @@ export const itemContext = React.createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
-  const [itemCount, setItemCount] = useState({})
+  const [itemList, setItemList] = useState({})
+  const [listToggle, setListToggle] = useState(false)
   const navigate = useNavigate()
   
   useEffect(() => {
-    fetch(`http://localhost:3001/countitems`)
+    fetch(`http://localhost:3001/list-items`)
       .then((res) => res.json())
       .then((data) => {
-        setItemCount(data[0].max);
+        setItemList(data);
       });
-  }, []);
+  }, [listToggle]);
 
   useEffect(()=>{
     let reqOpts = {
@@ -40,7 +41,7 @@ function App() {
 
   return (
   <div className="bg-hero bg-cover min-w-screen min-h-screen">
-    <itemContext.Provider value = {{currentUser,setCurrentUser,itemCount, setItemCount}}>
+    <itemContext.Provider value = {{setListToggle,listToggle,currentUser,setCurrentUser,itemList, setItemList}}>
       
       <Navbar/>
       <Routes>

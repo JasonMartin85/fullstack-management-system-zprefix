@@ -9,18 +9,23 @@ const Item = () => {
   const [currentItem,setCurrentItem] = useState();
   const [itemCreator,setItemCreator] = useState();
   const [updateToggle,setUpdateToggle] = useState(false);
-  const {itemCount, currentUser} = React.useContext(itemContext)
+  const {itemList, currentUser, listToggle,setListToggle} = React.useContext(itemContext)
   const navigate = useNavigate();
   let params = useParams();
 
   const handlePageChange = (nextPage) => {
-
-    if (nextPage !== 0 && nextPage <= itemCount ) {
-      navigate(`/item/${nextPage}`)
-      fetch(`http://localhost:3001/item/${params.id}`)
-      .then(res => res.json())
-      .then(data => {setCurrentItem(data[0])})
-    } 
+    let index = itemList.indexOf(parseInt(params.id))
+    if (nextPage === "PREV" && index !==0) {
+      nextPage = itemList[index - 1]
+    }
+    if (nextPage === "NEXT" && index !==itemList.length) {
+      nextPage = itemList[index + 1]
+    }
+    fetch(`http://localhost:3001/item/${nextPage}`)
+    .then(res => res.json())
+    .then(data => {setCurrentItem(data[0])})
+    .then(navigate(`/item/${nextPage}`))
+    
   }
 
   const deleteItem = () => {
@@ -28,6 +33,7 @@ const Item = () => {
     .then(res => {
       console.log(res)
       if (res.status === 200) {
+        setListToggle(!listToggle)
         navigate('/home')
       } else {
         alert("Error trying to delete item, please try again later")
@@ -86,21 +92,18 @@ const Item = () => {
         </div>
       </div>
       <div className="flex flex-row gap-10 mt-5">
-      <Button disabled={parseInt(params.id) === 1} onClick={()=>{handlePageChange(parseInt(params.id) - 1)}}>Previous</Button>
-      <Button onClick={updateItem} disabled={currentUser.username===undefined}> Edit</Button>
-      <Button className="bg-failure"onClick={deleteItem} disabled={currentUser.username===undefined}>Delete</Button>
-      <Button disabled={parseInt(params.id) === itemCount} onClick={()=>{handlePageChange(parseInt(params.id) + 1)}}>Next</Button>
+      <Button disabled={parseInt(params.id) === 1} onClick={()=>{handlePageChange("PREV")}}>Previous</Button>
+      <Button color="success" onClick={updateItem} disabled={currentUser.username===undefined}> Edit</Button>
+      <Button color="failure" onClick={deleteItem} disabled={currentUser.username===undefined}>Delete</Button>
+      <Button disabled={parseInt(params.id) === itemList[itemList.length-1]} onClick={()=>{handlePageChange("NEXT")}}>Next</Button>
       </div>
         </>
       :<> 
         <NewItem method="PATCH" defaultValues={currentItem} updateToggle={setUpdateToggle} />
       </>}
       </> :<>
-      <h1>Unable to retrieve item:</h1>
       <div className="flex flex-row gap-5 mt-2">
-      <Button disabled={parseInt(params.id) === 1} onClick={()=>{handlePageChange(parseInt(params.id) - 1)}}>Previous</Button>
         <Spinner color="success" aria-label="Success spinner example"/>
-      <Button disabled={parseInt(params.id) === itemCount} onClick={()=>{handlePageChange(parseInt(params.id) + 1)}}>Next</Button>
       </div></>}
   </section></>)
 }

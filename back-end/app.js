@@ -25,13 +25,6 @@ error_message = 'Unable to access request resources, please refine search or try
 app.use(morgan('tiny'))
 app.use(express.json())
 
-// app.use(cookieSession({
-//   name: 'user_session',
-//   httpOnly: true,
-//   sameSite: 'strict',
-//   secret: 'arereallylongstringwouldgoherethatwasarealkey'
-// }))
-
 const store = new KnexSessionStore({
   knex,
   tableName: "sessions",
@@ -98,6 +91,7 @@ app.get('/items', (req,res) => {
   knex
     .select('*')
     .from('items')
+    .orderBy('id')
     .then(data => { res.status(200).send(data)})
     .catch((err) => {
       console.log(err)
@@ -158,7 +152,6 @@ app.delete('/item/:id', (req,res) => {
 })
 
 app.patch('/item/:id', (req,res) => {
-  // console.log(req)
   if (req.sessionID && req.session.userData) {
   knex('items')
     .where('id','=',req.params.id)
@@ -170,9 +163,9 @@ app.patch('/item/:id', (req,res) => {
   }
 })
 
-app.get('/countitems', (req,res) => {
-  knex('items').max("id")
-  .then(data => res.status(200).json(data))
+app.get('/list-items', (req,res) => {
+  knex.select('id').from('items').orderBy('id')
+  .then(data => res.status(200).json(data.map(item => item.id)))
   .catch(err => res.status(404).send(err))
 })
 
