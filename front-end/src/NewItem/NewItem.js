@@ -84,14 +84,14 @@ const NewItem = (props) => {
   }
 
   return (
-<section className="col-span-2 place-items-center h-screen w-full mt-10">
+<section className="col-span-2 mt-4 w-full flex justify-center">
   <div className="px-9">
     <h3 className="mb-2 font-medium leading-tight text-neutral-800 text-3xl">{header}</h3>
-    <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg p-10 ">
-    <form onSubmit={handleSubmit}>
+    <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg p-10 flex justify-center flex-col">
+    <form className="mr-3" onSubmit={handleSubmit}>
       <div className="font-bold">Common Name</div>
       <input 
-        className="border border-2 rounded mb-2 ml-4" 
+        className="border border-2 rounded mb-2 ml-4 w-full" 
         name="item_name" 
         onChange={handleChange}
         defaultValue={defaultValues.item_name}
@@ -99,7 +99,7 @@ const NewItem = (props) => {
 
       <div className="font-bold">Scientific Name</div>
       <input 
-        className="border border-2 rounded mb-2 ml-4" 
+        className="border border-2 rounded mb-2 ml-4 w-full" 
         name="sci_name" 
         onChange={handleChange}
         defaultValue={defaultValues.sci_name}
@@ -109,7 +109,7 @@ const NewItem = (props) => {
       <textarea
         rows="10"
         cols="50" 
-        className="border border-2 rounded mb-2 ml-4" 
+        className="border border-2 rounded mb-2 ml-4 w-full"  
         name="description" 
         onChange={handleChange}
         defaultValue={defaultValues.description}
@@ -117,7 +117,7 @@ const NewItem = (props) => {
 
       <div className="font-bold">Quantity</div>
       <input
-        className="border border-2 rounded mb-2 ml-4"
+        className="border border-2 rounded mb-2 ml-4 w-full"
         name="quantity" 
         onChange={handleChange}
         defaultValue={defaultValues.quantity}

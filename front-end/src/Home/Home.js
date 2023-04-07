@@ -22,19 +22,18 @@ const Home = () => {
   };
 
   return (<>
-    <h1 className="text-3xl font-bold px-9 m-5">Home</h1>
-
+        <h1 className="text-4xl font-bold px-9 m-5 text-center">North American Trees</h1>
     <div className="flex flex-col ">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           <div className="overflow-hidden">
             <table className="min-w-full text-left text-sm font-light">
-              <thead className="border-b font-medium dark:border-neutral-500 bg-green-800">
+              <thead className="border-b dark:border-neutral-500 bg-green-800">
                 <tr>
-                  <th scope="col" className="px-6 py-4">#</th>
-                  <th scope="col" className="px-6 py-4">Common Name</th>
-                  <th scope="col" className="px-6 py-4">Scientific Name</th>
-                  <th scope="col" className="px-6 py-4">Description</th>
+                  <th scope="col" className="px-6 py-4 text-xl">#</th>
+                  <th scope="col" className="px-6 py-4 text-xl">Common Name</th>
+                  <th scope="col" className="px-6 py-4 text-xl">Scientific Name</th>
+                  <th scope="col" className="px-6 py-4 text-xl">Description</th>
                 </tr>
               </thead>
               
@@ -44,12 +43,12 @@ const Home = () => {
                     return (
                       <tr
                       key={item.id} 
-                      className="border-b transition duration-300 ease-in-out hover:bg-green-800/50"
+                      className="border-b font-bold transition duration-300 table-hover ease-in-out hover:bg-green-800/50"
                       onClick={()=>itemClick(item.id)}>
-                        <td className="whitespace-nowrap px-6 py-4 font-medium">{item.id}</td>
-                        <td className="whitespace-nowrap px-6 py-4">{item.item_name}</td>
-                        <td className="whitespace-nowrap px-6 py-4">{item.sci_name}</td>
-                        <td className="whitespace-nowrap px-6 py-4">{item.description.length > 100 ? `${item.description.slice(0,100)}...` : item.description}</td>
+                        <td className="whitespace-nowrap px-6 py-4 font-medium bg-green-800/75">{item.id}</td>
+                        <td className="whitespace-nowrap px-6 py-4 bg-green-800/75">{item.item_name}</td>
+                        <td className="whitespace-nowrap px-6 py-4 bg-green-800/75">{item.sci_name}</td>
+                        <td className="whitespace-nowrap px-6 py-4 bg-green-800/75">{item.description.length > 100 ? `${item.description.slice(0,100)}...` : item.description}</td>
                       </tr>
                     );
                   })

@@ -28,15 +28,14 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-link:hover {
+  color: #FFEAEE; 
+  text-shadow: 0 0 2px #FFEAEE;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* .table-hover {
+  transition-duration: .25s;
+} */
+.table-hover:hover {
+  color: #FFEAEE; 
+  text-shadow: 0 0 1px #FFEAEE;
 }

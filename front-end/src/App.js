@@ -23,7 +23,8 @@ function App() {
         setItemCount(data[0].max);
       });
   }, []);
-  return (<div className="h-screen bg-emerald-600">
+  return (
+  <div className="bg-hero bg-cover min-w-screen min-h-screen">
     <itemContext.Provider value = {{currentUser,setCurrentUser,itemCount, setItemCount}}>
       
       <Navbar/>

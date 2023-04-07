@@ -45,7 +45,7 @@ const Login = () => {
       <div className="px-9 flex justify-center">
         <div className="block max-w-sm rounded-lg bg-green-700 shadow-lg px-5">
         <form onSubmit={handleLogin} className="flex flex-col justify-center">
-          <h1 className="mb-2 leading-tight text-neutral-800 dark:text-neutral-50 text-center text-3xl">Login</h1>
+          <h1 className="mb-2 mt-1 leading-tight text-neutral-800 dark:text-neutral-50 text-center text-3xl">Login</h1>
           <div className="flex row justify-center m-2">
           <span className="font-bold">Username</span>
           <input name="username" className=" ml-2 border border-2 rounded" onChange={handleChange}/><br/>

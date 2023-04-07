@@ -10,7 +10,6 @@ const Item = () => {
   const [itemCreator,setItemCreator] = useState();
   const [updateToggle,setUpdateToggle] = useState(false);
   const {itemCount} = React.useContext(itemContext)
-  const [inputs, setInputs] = useState({item_name:'',description:'',quantity:''})
   const navigate = useNavigate();
   let params = useParams();
 
@@ -52,14 +51,13 @@ const Item = () => {
   },[updateToggle])
 
   return(<>
-  {console.log(itemCount===parseInt(params.id))}
   <section className="col-span-2 place-items-center h-screen w-full mt-10 flex flex-col">
     {currentItem  && itemCreator ? <>
     {!updateToggle ? <>
-      <h3 className="mb-2 font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-3xl px-9">Detail Item View</h3>
+      <h3 className="mb-4 font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-4xl px-9">{currentItem.item_name}</h3>
     <div className="px-9 flex flex-row flex-wrap gap-5">
         <div className="block max-w-lg rounded-lg text shadow-lg bg-green-800/50 p-10">  
-        <h3 className="mb-2 font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 text-center text-3xl">{currentItem.item_name}</h3>
+        <h3 className="mb-2 font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 text-center text-3xl">Details:</h3>
           <div className="font-bold ml-3">Item ID: </div>
           <div className="ml-4 mb-4 text-base dark:text-neutral-200">{`${currentItem.id}`}</div>
           <div className="font-bold ml-3">Scientific Name: </div>
@@ -73,7 +71,12 @@ const Item = () => {
         </div> 
         <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg bg-green-800 p-10">
           <div className = "flex flex-row justify-center"> 
-            <img className= "h-80" src={currentItem.img_string}/>
+            {console.log('item string',currentItem.img_string)}
+            {console.log('item string',currentItem.img_string === undefined)}
+            {currentItem.img_string !== null
+              ? <img className= "h-80" src={currentItem.img_string} alt={`${currentItem.item_name}`}/> 
+              : <div><img className= "h-80" src="/tree-unavailable.png" alt="Stock Tree"/><p className="font-bold mt-2">{`Unable to locate image of ${currentItem.item_name}`}</p></div> }
+
           </div>
           </div>
         <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg p-10">

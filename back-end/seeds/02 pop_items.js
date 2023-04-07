@@ -34,17 +34,17 @@ exports.seed = async function(knex) {
       userid: 3, 
       item_name: 'American elm',
       sci_name: 'Ulmus americana', 
-      description: 'Ulmus americana, generally known as the American elm or, less commonly, as the white elm or water elm,[a] is a species of elm native to eastern North America, naturally occurring from Nova Scotia west to Alberta and Montana, and south to Florida and central Texas. The American elm is an extremely hardy tree that can withstand winter temperatures as low as −42 °C (−44 °F). Trees in areas unaffected by Dutch elm disease (DED) can live for several hundred years. A prime example of the species was the Sauble Elm, which grew beside the banks of the Sauble River in Ontario, Canada, to a height of 43 m (140 ft), with a d.b.h of 196 cm (6.43 ft) before succumbing to DED; when it was felled in 1968, a tree-ring count established that it had germinated in 1701. For over 80 years, U. americana had been identified as a tetraploid, i.e. having double the usual number of chromosomes, making it unique within the genus. However, a study published in 2011 by the Agricultural Research Service of the USDA revealed that about 20% of wild American elms are diploid and may even constitute another species. Moreover, several triploid trees known only in cultivation, such as Jefferson, are possessed of a high degree of resistance to DED, which ravaged American elms in the 20th century. This suggests that the diploid parent trees, which have markedly smaller cells than the tetraploid, may too be highly resistant to the disease.', 
+      description: 'Ulmus americana, generally known as the American elm or, less commonly, as the white elm or water elm, is a species of elm native to eastern North America, naturally occurring from Nova Scotia west to Alberta and Montana, and south to Florida and central Texas. The American elm is an extremely hardy tree that can withstand winter temperatures as low as −42 °C (−44 °F).', 
       quantity:12,
       img_string: 'https://upload.wikimedia.org/wikipedia/commons/8/86/American_Elm_Tree%2C_Old_South_Street%2C_Northampton%2C_MA_-_October_2019.jpg'
     },
     {
       userid: 2, 
-      item_name: 'Subaplpine Larch',
+      item_name: 'Subalpine Larch',
       sci_name: 'Larix lyallii', 
       description: 'Larix lyallii is a small tree, growing from 10 to 25 meters (33 to 82 ft) tall and shorter at higher elevations. It has a straight trunk with a sparse and somewhat conical crown. The branches are horizontal, perpendicular to the trunk, irregularly spaced and twisted. The twigs are finely hairy. The needles are four-angled, 20 to 35 millimeters (3⁄4 to 1+1⁄2 in) long and crowded in groups of 30 to 40 on short spurs. They are pale blue-green and deciduous, turning golden yellow in autumn.', 
       quantity:999,
-      img_string: 'https://en.wikipedia.org/wiki/File:SubalpineLarch_7735tl.jpg'
+      img_string: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/SubalpineLarch_7735tl.jpg'
     },
     {
       userid: 2, 
