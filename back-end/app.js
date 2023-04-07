@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 app.use(cors({
   origin: "http://localhost:3000",
-  methods: ["POST","PUT","GET","OPTIONS","HEAD","DELETE"],
+  methods: ["POST","PATCH","GET","OPTIONS","HEAD","DELETE"],
   credentials: true,
 }))
 
@@ -78,7 +78,7 @@ app.post('/logout', (req,res) => {
 
 app.post('/login', (req,res,next) => {
   const {username,password} = req.body;
-
+  
   knex('users').where('username','=',username)
   .then(data => {
     if(data[0].password === password) {
@@ -141,22 +141,30 @@ app.get('/user/:id', (req,res) => {
 })
 
 app.delete('/item/:id', (req,res) => {
-  knex('items')
-  .where('id','=',req.params.id)
-  .del()
-  .then(data => res.status(200).json(data))
-  .catch((err) => {
-    res.status(404).send(err)
-  })
+  console.log(req.sessionID)
+  if (req.sessionID && req.session.userData) {
+    knex('items')
+      .where('id','=',req.params.id)
+      .del()
+      .then(data => res.status(200).json(data))
+      .catch((err) => {
+        res.status(404).send(err)
+    })
+} else {
+  res.status(404)
+}
 })
 
 app.patch('/item/:id', (req,res) => {
+  if (req.sessionID && req.session.userData) {
   knex('items')
     .where('id','=',req.params.id)
     .update(req.body)
     .then(data => res.status(200).json(data))
     .catch((err) => {res.status(404).send(err)})
-
+  } else {
+    res.status(404)
+  }
 })
 
 app.get('/countitems', (req,res) => {

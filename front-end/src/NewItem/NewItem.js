@@ -24,7 +24,10 @@ const NewItem = (props) => {
   let reqOptions = {
     method: props.method,
     headers: {"Content-Type": "application/json"},
+    credentials: "include",
   }
+
+
 
   const [newItem, setNewItem] = useState({})
   const [patchItem, setPatchItem] = useState({})

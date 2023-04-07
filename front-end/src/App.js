@@ -14,6 +14,7 @@ export const itemContext = React.createContext();
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [itemCount, setItemCount] = useState({})
+  const navigate = useNavigate()
   
   useEffect(() => {
     fetch(`http://localhost:3001/countitems`)
@@ -23,6 +24,23 @@ function App() {
         setItemCount(data[0].max);
       });
   }, []);
+
+  useEffect(()=>{
+    let reqOpts = {
+      method: "POST",
+      "Access-Control-Allow-Origin": "*",
+      credentials: "include",
+    }
+    if (!currentUser) {
+    fetch(`http://localhost:3001/validate-session`,reqOpts)
+    .then(res => res.json())
+    .then(data => {
+      setCurrentUser(data)
+      navigate('/home')
+    })
+  }
+  },[]) 
+
   return (
   <div className="bg-hero bg-cover min-w-screen min-h-screen">
     <itemContext.Provider value = {{currentUser,setCurrentUser,itemCount, setItemCount}}>

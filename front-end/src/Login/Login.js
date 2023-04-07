@@ -11,19 +11,7 @@ const Login = () => {
   const [inputs,setInputs] = useState();
 
 
-  useEffect(()=>{
-    let reqOpts = {
-      method: "POST",
-      "Access-Control-Allow-Origin": "*",
-      credentials: "include",
-    }
-    fetch(`http://localhost:3001/validate-session`,reqOpts)
-    .then(res => res.json())
-    .then(data => {
-      setCurrentUser(data)
-      navigate('/home')
-    })
-  },[]) 
+
 
   const handleLogin = (e) => {
     e.preventDefault();

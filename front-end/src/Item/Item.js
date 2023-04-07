@@ -9,7 +9,7 @@ const Item = () => {
   const [currentItem,setCurrentItem] = useState();
   const [itemCreator,setItemCreator] = useState();
   const [updateToggle,setUpdateToggle] = useState(false);
-  const {itemCount} = React.useContext(itemContext)
+  const {itemCount, currentUser} = React.useContext(itemContext)
   const navigate = useNavigate();
   let params = useParams();
 
@@ -17,13 +17,16 @@ const Item = () => {
 
     if (nextPage !== 0 && nextPage <= itemCount ) {
       navigate(`/item/${nextPage}`)
-      navigate(0)
+      fetch(`http://localhost:3001/item/${params.id}`)
+      .then(res => res.json())
+      .then(data => {setCurrentItem(data[0])})
     } 
   }
 
   const deleteItem = () => {
-    fetch(`http://localhost:3001/item/${params.id}`, {method: "DELETE"})
+    fetch(`http://localhost:3001/item/${params.id}`, {method: "DELETE",credentials:"include"})
     .then(res => {
+      console.log(res)
       if (res.status === 200) {
         navigate('/home')
       } else {
@@ -71,8 +74,6 @@ const Item = () => {
         </div> 
         <div className="block max-w-lg rounded-lg bg-green-800/50 shadow-lg bg-green-800 p-10">
           <div className = "flex flex-row justify-center"> 
-            {console.log('item string',currentItem.img_string)}
-            {console.log('item string',currentItem.img_string === undefined)}
             {currentItem.img_string !== null
               ? <img className= "h-80" src={currentItem.img_string} alt={`${currentItem.item_name}`}/> 
               : <div><img className= "h-80" src="/tree-unavailable.png" alt="Stock Tree"/><p className="font-bold mt-2">{`Unable to locate image of ${currentItem.item_name}`}</p></div> }
@@ -86,8 +87,8 @@ const Item = () => {
       </div>
       <div className="flex flex-row gap-10 mt-5">
       <Button disabled={parseInt(params.id) === 1} onClick={()=>{handlePageChange(parseInt(params.id) - 1)}}>Previous</Button>
-      <Button onClick={updateItem}> Edit</Button>
-      <Button className="bg-failure"onClick={deleteItem}>Delete</Button>
+      <Button onClick={updateItem} disabled={currentUser.username===undefined}> Edit</Button>
+      <Button className="bg-failure"onClick={deleteItem} disabled={currentUser.username===undefined}>Delete</Button>
       <Button disabled={parseInt(params.id) === itemCount} onClick={()=>{handlePageChange(parseInt(params.id) + 1)}}>Next</Button>
       </div>
         </>
