@@ -10,6 +10,16 @@ exports.up = function(knex) {
     table.string('username');
     table.string('password')
   })
+  .createTable('items', table =>{
+    table.increments('id');
+    table.integer('userid');
+    table.foreign('userid').references('id').inTable('users')
+    table.string('item_name');
+    table.string('sci_name')
+    table.text('description');
+    table.integer('quantity');
+    table.text('img_string');
+  })
 };
 
 /**
@@ -17,5 +27,8 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('users')
+  return knex.schema
+    .dropTableIfExists('users')
+    .dropTableIfExists('items')
+
 };
