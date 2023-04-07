@@ -106,7 +106,6 @@ app.get('/items', (req,res) => {
 })
 
 app.get('/item/:id', (req,res) => {
-  console.log(req.params.id)
   knex('items')
   .select('*')
   .where('id','=',req.params.id)
@@ -115,8 +114,8 @@ app.get('/item/:id', (req,res) => {
 
 app.post('/newitem', (req,res) => {
   const {item_name,description,quantity,userid} = req.body;
-  console.log(req.body)
 
+if (req.sessionID && req.session.userData) {
   knex('items')
   .insert({
     'item_name':item_name,
@@ -128,6 +127,9 @@ app.post('/newitem', (req,res) => {
   .catch((err) => {
     res.status(404).send(err)
   })
+} else {
+  res.status(404)
+}
 })
 
 app.get('/user/:id', (req,res) => {
@@ -156,6 +158,7 @@ app.delete('/item/:id', (req,res) => {
 })
 
 app.patch('/item/:id', (req,res) => {
+  // console.log(req)
   if (req.sessionID && req.session.userData) {
   knex('items')
     .where('id','=',req.params.id)

@@ -42,7 +42,7 @@ const NewItem = (props) => {
     }
 
     if (props.method === 'POST') {
-      setNewItem({...inputs,userid:currentUser.id})
+      setNewItem({...inputs,userid:currentUser.userId})
     }
   }
 
@@ -56,12 +56,15 @@ const NewItem = (props) => {
   }
 
   useEffect(()=>{
+    if(patchItem !== undefined && Object.keys(patchItem).length !== 0) {
     fetch(`http://localhost:3001/item/${params.id}`,{...reqOptions,body:JSON.stringify(patchItem)})
     .then(res => {
       if(res.status === 200) {
+        console.log(res.json())
         props.updateToggle()
       }
     })
+  }
   }, [patchItem])
 
   useEffect(()=>{
