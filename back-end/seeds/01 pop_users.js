@@ -4,7 +4,6 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex.schema.raw('TRUNCATE users CASCADE')
   await knex('users').del()
   await knex('users').insert([
     { first_name: 'Stephen', last_name: 'Strange', username: 'SorcererSupreme1', password:'TonyStarkSucks'},
