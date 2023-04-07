@@ -39,20 +39,21 @@ function App() {
   
   },[]) 
 
-  return (
-  <div className="bg-hero bg-cover min-w-screen min-h-screen">
-    <itemContext.Provider value = {{setListToggle,listToggle,currentUser,setCurrentUser,itemList, setItemList}}>
-      
-      <Navbar/>
-      <Routes>
-        <Route path = "/" element = {<Login />} />
-        <Route path = "/Home" element = {<Home />} />  
-        <Route path = "/Item/:id" element = {<Item />} />
-        <Route path = "/Login" element = {<Login />} />
-        <Route path = "/NewItem" element = {<NewItem method="POST"/>} />
-      </Routes>
-    </itemContext.Provider>
-    </div>);
+  return (<div className="bg-emerald-900">
+    <div className="bg-hero bg-cover min-w-screen min-h-screen overflow-auto">
+      <itemContext.Provider value = {{setListToggle,listToggle,currentUser,setCurrentUser,itemList, setItemList}}>
+        
+        <Navbar/>
+        <Routes>
+          <Route path = "/" element = {<Login />} />
+          <Route path = "/Home" element = {<Home />} />  
+          <Route path = "/Item/:id" element = {<Item />} />
+          <Route path = "/Login" element = {<Login />} />
+          <Route path = "/NewItem" element = {<NewItem method="POST"/>} />
+        </Routes>
+      </itemContext.Provider>
+    </div>
+  </div>);
 }
 
 export default App;
