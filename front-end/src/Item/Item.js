@@ -26,16 +26,18 @@ const Item = () => {
       nextPage = itemList[index + 1];
     }
     fetch(`http://localhost:3001/item/${nextPage}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(res.statusText);
-        return res.json();
-      })
-
+      .then((res) => res.json())
       .then((data) => {
         setCurrentItem(data[0]);
+        return(data)
+      })
+      .then((itemData) => {
+        console.log(itemData.userid)
+        fetch(`http://localhost:3001/user/${itemData[0].userid}`)
+          .then((res) => res.json())
+          .then((data) => setItemCreator(data))
       })
       .then(navigate(`/item/${nextPage}`))
-      .catch((err) => console.log(err));
   };
 
   const deleteItem = () => {

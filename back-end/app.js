@@ -95,6 +95,13 @@ app.get('/items', (req,res) => {
     })
 })
 
+app.get('/usertrees/:id', (req,res) => {
+  knex('items')
+  .select('*')
+  .where('userid','=',req.params.id)
+  .then(data => {res.status(200).send(data)})
+})
+
 app.get('/item/:id', (req,res) => {
   knex('items')
   .select('*')
@@ -164,6 +171,7 @@ app.get('/list-items', (req,res) => {
   .then(data => res.status(200).json(data.map(item => item.id)))
   .catch(err => res.status(404).send(err))
 })
+
 
 app.post('/newuser', (req,res) => {
   const {username,password,first_name,last_name} = req.body;

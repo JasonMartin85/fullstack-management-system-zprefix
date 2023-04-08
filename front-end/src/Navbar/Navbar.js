@@ -3,6 +3,7 @@ import {Link, useLocation} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import { GiPineTree, GiTreeBranch, GiBirchTrees } from "react-icons/gi"
 import { SiTreehouse } from "react-icons/si"
+import { MdCollections } from "react-icons/md"
 
 const Navbar = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
@@ -29,6 +30,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex flex-row">
+        <Link className={`mr-5 flex flex-row gap-1 items-center  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/MyTrees'}><MdCollections/><button>My Trees</button></Link>
         <Link className={`mr-5 flex flex-row gap-1 items-center  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/NewItem'}><GiPineTree/><button>Add Tree</button></Link>
         <Link className={`mr-5 flex flex-row gap-1 items-center navbar-link text-black`} to='/Register'><SiTreehouse/>Register</Link>
         <Link className=" navbar-link mr-5 flex flex-row gap-1 items-center" to='/Login'><GiBirchTrees/><button onClick={logoutUser}>{currentUser.username ? <>Logout</> : <>Login Page</>}</button></Link><br/>

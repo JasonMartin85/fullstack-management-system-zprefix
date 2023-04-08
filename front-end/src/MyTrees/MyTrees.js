@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Spinner } from "flowbite-react";
 import {itemContext} from '../App.js'
 
 const Home = () => {
   const [itemsArray, setItemsArray] = useState();
   const navigate = useNavigate();
+  let params = useParams();
 
   const {currentUser} = React.useContext(itemContext)
 
-useEffect(() => {
 
-    fetch(`http://localhost:3001/items`)
+useEffect(() => {
+    fetch(`http://localhost:3001/usertrees/${currentUser.userId}`)
       .then((res) => { 
       if (!res.ok) throw new Error(res.statusText);
       return(res.json())

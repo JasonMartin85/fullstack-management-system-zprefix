@@ -7,6 +7,7 @@ import Login from './Login/Login.js'
 import Navbar from './Navbar/Navbar.js'
 import NewItem from './NewItem/NewItem.js'
 import Register from './Register/Register.js'
+import MyTrees from './MyTrees/MyTrees.js'
 
 export const itemContext = React.createContext();
 
@@ -28,6 +29,8 @@ function App() {
       .catch(err=>console.log(err))
 
   }, [listToggle]);
+
+  
 
   useEffect(()=>{
     let reqOpts = {
@@ -57,6 +60,7 @@ function App() {
           <Route path = "/" element = {<Login />} />
           <Route path = "/Register" element = {<Register />} />
           <Route path = "/Home" element = {<Home />} />  
+          <Route path = "/MyTrees" element = {<MyTrees />} />  
           <Route path = "/Item/:id" element = {<Item />} />
           <Route path = "/Login" element = {<Login />} />
           <Route path = "/NewItem" element = {<NewItem method="POST"/>} />
