@@ -103,12 +103,13 @@ app.get('/item/:id', (req,res) => {
 })
 
 app.post('/newitem', (req,res) => {
-  const {item_name,description,quantity,userid} = req.body;
+  const {item_name,description,quantity,userid,sci_name} = req.body;
 
 if (req.sessionID && req.session.userData) {
   knex('items')
   .insert({
     'item_name':item_name,
+    'sci_name':sci_name,
     'description':description,
     'quantity':quantity,
     'userid':userid

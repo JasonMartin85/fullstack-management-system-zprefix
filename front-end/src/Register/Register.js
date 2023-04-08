@@ -58,7 +58,7 @@ const Register = () => {
       <div className="px-9 flex justify-center">
         <div className="block max-w-sm rounded-lg border border-black bg-green-700 shadow-lg px-5">
         <form onSubmit={handleRegister} className="flex flex-col justify-center">
-          <h1 className="mb-2 mt-1 leading-tight text-neutral-800 dark:text-neutral-50 text-center text-3xl">Register</h1>
+          <h1 className="mb-2 mt-1 leading-tight text-neutral-800 dark:text-neutral-50 text-center text-3xl">Sign Up</h1>
           <div className="flex row justify-center m-2">
           <span className="font-bold">First Name</span>
           <input name="first_name" className=" h-7 w-48 pl-2 ml-2 border border-black border-2 rounded" onChange={handleChange}/><br/>
