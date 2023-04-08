@@ -52,7 +52,7 @@ Once the application is running successfully...
 | username          | password           |
 | SorcererSupreme1  | TonyStarkSucks     | 
 | FriendlyNeighbor2 | AuntMayCanNeverDie |
-| Batman            | ImBatman           |
+| ImBatman          | IMissMyParents     |
 
 > Note: Successful logins create session cookies. Want to use a different account? Make sure you log out first!
 
