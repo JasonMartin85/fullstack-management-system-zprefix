@@ -11,6 +11,15 @@ import MyTrees from './MyTrees/MyTrees.js'
 
 export const itemContext = React.createContext();
 
+// TODO: span cannot appear as child of body error... home or login  move spinner out of table
+// TODO: Fix image loading with impartial urls
+// TODO: Add updated by field to individual item page
+// TODO: Update table view of trees when empty to provide better information as to why 
+// TODO: update individual items fetch to only do one query instead of two
+// TODO: look at deleting/updating fetch statements and add better thought out catch statements?
+// TODO: Go over each of the status codes (front-end and back-end) and provide more appropriate codes
+
+
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [itemList, setItemList] = useState({})
@@ -22,13 +31,13 @@ function App() {
     .then((res) => { 
       if (!res.ok) throw new Error(res.statusText);
       return(res.json())
-     })
+     }) 
       .then((data) => {
         setItemList(data);
-      })
+      })  
       .catch(err=>console.log(err))
 
-  }, [listToggle]);
+  }, [listToggle]);    
 
   
 
@@ -37,7 +46,7 @@ function App() {
       method: "POST",
       "Access-Control-Allow-Origin": "*",
       credentials: "include",
-    }
+    }  
 
     fetch(`http://localhost:3001/validate-session`,reqOpts)
     .then((res) => { 
@@ -47,7 +56,7 @@ function App() {
     .then(data => {
       setCurrentUser(data)
       navigate('/home')
-    })
+    })  
     .catch(err=>console.log(err))
   },[]) 
 
@@ -64,10 +73,11 @@ function App() {
           <Route path = "/Item/:id" element = {<Item />} />
           <Route path = "/Login" element = {<Login />} />
           <Route path = "/NewItem" element = {<NewItem method="POST"/>} />
-        </Routes>
-      </itemContext.Provider>
-    </div>
-  </div>);
+        </Routes>  
+      </itemContext.Provider>  
+    </div>  
+  </div>);    
 }
 
 export default App;
+
