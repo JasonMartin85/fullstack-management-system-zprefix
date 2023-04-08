@@ -1,5 +1,7 @@
 const express = require("express")
 const morgan = require("morgan")
+
+const bcrypt = require("bcrypt")
 const session = require("express-session")
 const KnexSessionStore = require("connect-session-knex")(session)
 const cors = require("cors")
@@ -68,10 +70,10 @@ app.post('/logout', (req,res) => {
 
 app.post('/login', (req,res,next) => {
   const {username,password} = req.body;
-  console.log(username,password)
+
   knex('users').where('username','=',username)
   .then(data => {
-    if(data[0].password === password) {
+    if(bcrypt.compareSync(password,data[0].password)) {
       userData = {
         userId:data[0].id,
         username:data[0].username,
@@ -184,7 +186,7 @@ app.post('/newuser', (req,res) => {
         knex('users')
         .insert({
           'username':username,
-          'password':password,
+          'password':bcrypt.hashSync(password,10),
           'first_name':first_name,
           'last_name':last_name
         },"*")
