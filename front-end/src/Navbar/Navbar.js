@@ -33,7 +33,7 @@ const Navbar = () => {
         <Link className={`mr-5 flex flex-row gap-1 items-center navbar-link`} to="/home"><MdForest/><button>All Trees</button></Link>
         <Link className={`mr-5 flex flex-row gap-1 items-center  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/MyTrees'}><MdCollections/><button>My Trees</button></Link>
         <Link className={`mr-5 flex flex-row gap-1 items-center  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/NewItem'}><GiPineTree/><button>Add Tree</button></Link>
-        <Link className={`mr-5 flex flex-row gap-1 items-center text-black ${currentUser.username !==undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username !== undefined ? '#' : '/Register'}><SiTreehouse/>Register</Link>
+        <Link className={`mr-5 flex flex-row gap-1 items-center ${currentUser.username !==undefined ?"hidden":"navbar-link text-black"}`} to='/Register'><SiTreehouse/>Register</Link>
         <Link className=" navbar-link mr-5 flex flex-row gap-1 items-center" to='/Login'><GiBirchTrees/><button onClick={logoutUser}>{currentUser.username ? <>Logout</> : <>Login Page</>}</button></Link><br/>
         </div>
 
