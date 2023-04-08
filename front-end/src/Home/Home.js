@@ -28,7 +28,7 @@ useEffect(() => {
   };
 
   return (<>
-        <h1 className="text-4xl font-bold px-9 m-5 text-center">North American Trees</h1>
+        <h1 className="text-4xl font-bold px-9 m-5 text-center">All Trees</h1>
     <div className="flex flex-col ">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
