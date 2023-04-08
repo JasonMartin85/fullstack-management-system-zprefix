@@ -64,7 +64,7 @@ Once the application is running successfully...
   - After a successful login, or by clicking the visitor link you will be navigated to the home page. 
   - This page displays all trees currently stored in the database.
   - Clicking any tree will direct you to the detail page for that particular tree.
-  - After navigating away clicking "The Forest Floor" on the navbar will return you home. 
+  - After navigating away clicking "The Forest Floor" or "All Trees" on the navbar will return you home. 
 
 ### My Tree view
   > Note: This view is unavailable for visitors!
@@ -74,14 +74,14 @@ Once the application is running successfully...
 ### Individual Tree View
   - This page displays details, description, and an image of the chosen tree.
   - Trees with no provided image url will display a default tree clip art, however, broken links will show alt text.
-  - Pressing the Previous or Next will take you to the tree with the next closest tree by id.
+  - Pressing the Previous or Next button will navigate you the tree with the next closest id (regardless of who added it).
   - The editing and delete buttons are explained in detail below.
 
 ### Editing a tree
   > Note: that the Edit button will be greyed out for visitors
-  - This button will pull up a form for editing the info about the tree.
-  - Any empty forms will be disregarded.
+  - This button will pull up a pregenrated form (from the existing info) for editing the tree data.
   - The quantity field requires a positive whole number before the edit will accept the change.
+  - Any empty forms will be disregarded and can be left blank or untouched to ignore changes. (Exception: The quantity field cannot be left blank!)
 
 ### Deleting a tree
   > Note: that the Delete button will be greyed out for visitors
@@ -91,18 +91,18 @@ Once the application is running successfully...
 ### Adding a tree
   > Note: that the Add Tree button will be greyed out for visitors
   - Adding a tree requires the title, quantity, and description fields be filled.
-  - The quantity field requires a positibe whole number before posting.
+  - The quantity field requires a positive whole number before posting.
 
 ## Stopping the system
 ---
- - To stop the application return to the console you initially spun up the program in and press ```ctrl + c``` to stop the docker container.  If you don't believe me you can subsequently run ```docker compose down``` to make sure it's over once and for all.
+ - To stop the application return to the console you initially spun it up in and press ```ctrl + c``` to stop the docker container.  If you don't believe me you can subsequently run ```docker compose down``` to make sure it's "game over man... game over".
 
 ## Pontential Hiccups or Roadblocks
 
 ---
 > Weird errors can occur if the application can't find its expected resources.  If any console outputs after running ```docker compose up``` indicate that a dependency is unavailable, navigate into the relevant folder (back-end or front-end) and re-run the ```npm install``` command. (At least one time I had to uninstall and reinstall a dependency so be diligent!)
 
-> One possible side-effect of abstracting the creation of a database is the possiblity of data conflicts.  This issue cannot be fixed by simply stopping and restarting the application.  To resolve this issue connect directly to the database using the following [procedure](https://stackoverflow.com/questions/37694987/connecting-to-postgresql-in-a-docker-container-from-outside). Once connected, type ```\l``` to see list all databases.  Delete the ```items``` database with the ```DROP DATABASE items;``` command.  Follow up by creating a new items database with the ```CREATE DATABASE items;```.  This effectively reboots the database.  (This shouldn't be an issue... but if it does happen this is the fix action)
+> One possible side-effect of abstracting the creation of a database is the possiblity of data conflicts.  This issue cannot be fixed by simply stopping and restarting the application.  To resolve this issue, spin up the application and connect directly to the database using the following [procedure](https://stackoverflow.com/questions/37694987/connecting-to-postgresql-in-a-docker-container-from-outside). Once connected, type ```\l``` to list all currently created databases.  Delete the ```items``` database with the ```DROP DATABASE items;``` command.  Follow up by creating a new items database with the ```CREATE DATABASE items;```.  This effectively reboots the database. Finally, spin down the application and then spin it back up which will (in theory) repopulate the items database with unconflicting data.  (This very likely will not be an issue... however, if it does happen this is the fix action)
 
 
 
