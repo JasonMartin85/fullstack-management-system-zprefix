@@ -87,6 +87,7 @@ app.post('/login', (req,res,next) => {
 })
       
 app.get('/items', (req,res) => {
+  console.log(req.session)
   knex
     .select('*')
     .from('items')
@@ -98,10 +99,13 @@ app.get('/items', (req,res) => {
 })
 
 app.get('/usertrees/:id', (req,res) => {
+
+
   knex('items')
   .select('*')
   .where('userid','=',req.params.id)
   .then(data => {res.status(200).send(data)})
+  
 })
 
 app.get('/item/:id', (req,res) => {
