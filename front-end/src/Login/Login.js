@@ -31,7 +31,7 @@ const Login = () => {
     })
     .then( data => {
       setCurrentUser(data.userData)
-      navigate('/home')
+      navigate('/MyTrees')
     })
     .catch(err => console.log(err))
 

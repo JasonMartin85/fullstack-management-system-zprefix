@@ -49,7 +49,7 @@ const Item = () => {
       console.log(res);
       if (res.status === 200) {
         setListToggle(!listToggle);
-        navigate("/home");
+        navigate("/MyTrees");
       } else {
         alert("Error trying to delete item, please try again later");
       }

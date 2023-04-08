@@ -97,7 +97,7 @@ const NewItem = (props) => {
       if(res.status === 201){
         setListToggle(!listToggle)
         alert('New Item added!')
-        navigate('/home')
+        navigate('/MyTrees')
       } 
     })
     .catch(err => console.log(err))
