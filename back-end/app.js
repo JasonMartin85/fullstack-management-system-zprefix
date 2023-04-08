@@ -68,7 +68,7 @@ app.post('/logout', (req,res) => {
 
 app.post('/login', (req,res,next) => {
   const {username,password} = req.body;
-
+  console.log(username,password)
   knex('users').where('username','=',username)
   .then(data => {
     if(data[0].password === password) {
@@ -162,6 +162,33 @@ app.get('/list-items', (req,res) => {
   knex.select('id').from('items').orderBy('id')
   .then(data => res.status(200).json(data.map(item => item.id)))
   .catch(err => res.status(404).send(err))
+})
+
+app.post('/newuser', (req,res) => {
+  const {username,password,first_name,last_name} = req.body;
+  console.log(req.body)
+  knex.count('username').from('users').where('username','=',username)
+    .then(data=>{
+      if(data>0) {
+        res.status(409).json('Username already taken')
+      } else {
+        knex('users')
+        .insert({
+          'username':username,
+          'password':password,
+          'first_name':first_name,
+          'last_name':last_name
+        },"*")
+        .then(data =>{ 
+          console.log(data)
+          res.status(201).json(data)})
+        .catch((err) => {
+          res.status(404).send(err)
+        })
+      }
+    })
+
+
 })
 
 app.all("/*", (req,res) => {

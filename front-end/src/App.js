@@ -6,6 +6,7 @@ import Item from './Item/Item.js'
 import Login from './Login/Login.js'
 import Navbar from './Navbar/Navbar.js'
 import NewItem from './NewItem/NewItem.js'
+import Register from './Register/Register.js'
 
 export const itemContext = React.createContext();
 
@@ -54,6 +55,7 @@ function App() {
         <Navbar/>
         <Routes>
           <Route path = "/" element = {<Login />} />
+          <Route path = "/Register" element = {<Register />} />
           <Route path = "/Home" element = {<Home />} />  
           <Route path = "/Item/:id" element = {<Item />} />
           <Route path = "/Login" element = {<Login />} />

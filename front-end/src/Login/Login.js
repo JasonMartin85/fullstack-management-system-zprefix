@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import {useNavigate, Link} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import {Button} from 'flowbite-react'
+import Register from '../Register/Register.js'
 
 const Login = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
@@ -56,6 +57,7 @@ const Login = () => {
           <span className="font-bold">Password</span>
           <input type="password" name="password" className=" h-7 w-48 ml-3 border border-black border-2 rounded" onChange={handleChange}/>
           </div>
+          
           <div className="flex flex-row justify-center m-5">
           <Button type="submit" className="w-1/2" >Login</Button>
           </div>

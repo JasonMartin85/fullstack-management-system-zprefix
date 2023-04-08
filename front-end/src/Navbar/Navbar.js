@@ -2,6 +2,7 @@ import React from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {itemContext} from '../App.js'
 import { GiPineTree, GiTreeBranch, GiBirchTrees } from "react-icons/gi"
+import { SiTreehouse } from "react-icons/si"
 
 const Navbar = () => {
   const {currentUser, setCurrentUser} = React.useContext(itemContext);
@@ -29,11 +30,12 @@ const Navbar = () => {
 
         <div className="flex flex-row">
         <Link className={`mr-5 flex flex-row gap-1 items-center  ${currentUser.username ===undefined ?"text-slate-400":"navbar-link text-black"}`} to={currentUser.username === undefined ? '#' : '/NewItem'}><GiPineTree/><button>Add Tree</button></Link>
+        <Link className={`mr-5 flex flex-row gap-1 items-center navbar-link text-black`} to='/Register'><SiTreehouse/>Register</Link>
         <Link className=" navbar-link mr-5 flex flex-row gap-1 items-center" to='/Login'><GiBirchTrees/><button onClick={logoutUser}>{currentUser.username ? <>Logout</> : <>Login</>}</button></Link><br/>
         </div>
 
   </nav>
-    <div className={`ml-2 font-medium ${location.pathname === '/Login' ? "text-transparent" : "text-black"}`}>Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
+    <div className={`ml-2 font-medium ${location.pathname === '/Login' || location.pathname === '/Register' ? "text-transparent" : "text-black"}`}>Viewing website as: {currentUser.username ? currentUser.username : <>Visitor</>}</div>
     </>
 )}
 
