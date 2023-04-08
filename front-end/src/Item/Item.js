@@ -135,6 +135,7 @@ const Item = () => {
                 </div>
                 <div className="flex flex-row gap-10 mt-5">
                   <Button
+                    color="dark"
                     disabled={parseInt(params.id) === 1}
                     onClick={() => {
                       handlePageChange("PREV");
@@ -143,21 +144,21 @@ const Item = () => {
                     Previous
                   </Button>
                   <Button
-                    color="success"
+                    color="dark"
                     onClick={updateItem}
                     disabled={currentUser.username === undefined}
                   >
-                    {" "}
                     Edit
                   </Button>
                   <Button
-                    color="failure"
+                    color="dark"
                     onClick={deleteItem}
                     disabled={currentUser.username === undefined}
                   >
                     Delete
                   </Button>
                   <Button
+                    color="dark"
                     disabled={
                       parseInt(params.id) === itemList[itemList.length - 1]
                     }

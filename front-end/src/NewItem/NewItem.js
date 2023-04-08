@@ -163,8 +163,8 @@ const NewItem = (props) => {
         defaultValue={defaultValues.img_string}
         /><br/>
       <div className="flex flex-row justify-center gap-4 p-5">
-        <Button type="submit">Submit</Button>
-        <Button onClick={()=>cancelClick()}>Cancel</Button>
+        <Button color="dark" type="submit">Submit</Button>
+        <Button color="dark" onClick={()=>cancelClick()}>Cancel</Button>
       </div>
     </form>
     </div>

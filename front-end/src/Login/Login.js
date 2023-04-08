@@ -59,7 +59,7 @@ const Login = () => {
           </div>
           
           <div className="flex flex-row justify-center m-5">
-          <Button type="submit" className=" w-1/2" >Login</Button>
+          <Button color="dark" type="submit" className=" w-1/2" >Login</Button>
           </div>
         </form>
         </div>

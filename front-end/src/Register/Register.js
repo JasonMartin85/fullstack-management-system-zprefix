@@ -76,9 +76,9 @@ const Register = () => {
           <input name="password" className=" h-7 w-48 pl-2 ml-4 border border-black border-2 rounded" onChange={handleChange}/><br/>
           </div>
 
-          <div className="flex flex-row justify-center gap-2 m-5">
-          <Button type="submit" className="w-1/3" >Register</Button>
-          <Button type="submit" color="failure" className="w-1/3" onClick={handleCancel}>Cancel</Button>
+          <div className="flex flex-row justify-center gap-4 m-5">
+          <Button type="submit" color="dark" className="w-1/3" >Register</Button>
+          <Button type="submit" color="dark" className="w-1/3" onClick={handleCancel}>Cancel</Button>
           </div>
         </form>
         </div>
