@@ -4,7 +4,7 @@ import { Spinner } from "flowbite-react";
 import {itemContext} from '../App.js'
 
 const Home = () => {
-  const [itemsArray, setItemsArray] = useState();
+  const [itemsArray, setItemsArray] = useState([]);
   const navigate = useNavigate();
   let params = useParams();
 
@@ -12,7 +12,6 @@ const Home = () => {
 
 
 useEffect(() => {
-  console.log(currentUser)
   if( 'userId' in currentUser) {
     fetch(`http://localhost:3001/usertrees/${currentUser.userId}`)
       .then((res) => { 
@@ -69,8 +68,11 @@ useEffect(() => {
                   aria-label="Success spinner example"
                 />
                 )}
+
               </tbody>
             </table>
+                  {console.log(itemsArray)}
+                {itemsArray.length === 0 ? <p className="text-xl flex justify-center font-bold" >You haven't added any trees yet... Why not add some!</p>:<></>}
           </div>
         </div>
       </div>
@@ -79,6 +81,4 @@ useEffect(() => {
 
 export default Home;
 
-{/* // 
-// */}
 

@@ -4,7 +4,7 @@ import { Spinner } from "flowbite-react";
 import {itemContext} from '../App.js'
 
 const Home = () => {
-  const [itemsArray, setItemsArray] = useState();
+  const [itemsArray, setItemsArray] = useState([]);
   const navigate = useNavigate();
 
   const {currentUser} = React.useContext(itemContext)
@@ -66,6 +66,7 @@ useEffect(() => {
                 )}
               </tbody>
             </table>
+            {itemsArray.length === 0 ? <p className="text-xl flex justify-center font-bold" >No trees yet... Why not add some!</p>:<></>}
           </div>
         </div>
       </div>
